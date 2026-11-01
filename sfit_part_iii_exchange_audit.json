@@ -1,0 +1,527 @@
+{
+  "title": "SFIT Part III \u2014 neutral exchange / absorption audit",
+  "version": "0.1",
+  "status": "candidate exchange law; not derived from Part I",
+  "configuration": {
+    "trials": 20000,
+    "capacity": 2000,
+    "max_steps": 20000,
+    "seed": 20261029
+  },
+  "runtime": {
+    "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "numpy": "2.2.6"
+  },
+  "model": {
+    "state": "integer loads n_k; x_k=n_k/M; sum n_k=M",
+    "exchange": "n' ~ Multinomial(M,x)",
+    "conditional_mean": "E[x'_k | F_t]=x_k",
+    "conserved": "total capacity M",
+    "absorbing": "simplex vertices",
+    "record": "first channel at global absorbing vertex",
+    "caveat": "Multinomial exchange is an extra Part III postulate, not a Part I consequence."
+  },
+  "results": {
+    "S2a": {
+      "target": [
+        0.2,
+        0.8
+      ],
+      "initial_counts": [
+        400,
+        1600
+      ],
+      "initial_shares": [
+        0.2,
+        0.8
+      ],
+      "capacity": 2000,
+      "trials": 20000,
+      "resolved": 19999,
+      "unresolved": 1,
+      "resolved_fraction": 0.99995,
+      "outcome_counts": [
+        4042,
+        15957
+      ],
+      "outcome_frequencies": [
+        0.20211010550527525,
+        0.7978898944947247
+      ],
+      "wilson_99": [
+        [
+          0.19489457986407832,
+          0.20952324852136234
+        ],
+        [
+          0.7904767514786376,
+          0.8051054201359217
+        ]
+      ],
+      "tv_vs_quantized_initial": 0.002110105505275295,
+      "tv_vs_requested_target": 0.002110105505275295,
+      "mean_absorption_steps": 2002.243662183109,
+      "median_absorption_steps": 1335.0,
+      "conditional_drift_mean_delta": [
+        5.9750000001940196e-05,
+        -5.975000000080222e-05
+      ],
+      "conditional_drift_se": [
+        6.365048362799945e-05,
+        6.365048362800023e-05
+      ],
+      "conditional_drift_z": [
+        0.9387202829619434,
+        -0.9387202829440535
+      ],
+      "energy_conservation_error": 0.0,
+      "alpha": null,
+      "alpha_status": "NOT MODELED: no detector event-time law"
+    },
+    "S2b": {
+      "target": [
+        0.5,
+        0.5
+      ],
+      "initial_counts": [
+        1000,
+        1000
+      ],
+      "initial_shares": [
+        0.5,
+        0.5
+      ],
+      "capacity": 2000,
+      "trials": 20000,
+      "resolved": 19997,
+      "unresolved": 3,
+      "resolved_fraction": 0.99985,
+      "outcome_counts": [
+        9976,
+        10021
+      ],
+      "outcome_frequencies": [
+        0.4988748312246837,
+        0.5011251687753163
+      ],
+      "wilson_99": [
+        [
+          0.48976851989530723,
+          0.50798188905515
+        ],
+        [
+          0.49201811094484993,
+          0.5102314801046927
+        ]
+      ],
+      "tv_vs_quantized_initial": 0.0011251687753163209,
+      "tv_vs_requested_target": 0.0011251687753163209,
+      "mean_absorption_steps": 2774.599689953493,
+      "median_absorption_steps": 2193.0,
+      "conditional_drift_mean_delta": [
+        -4.0224999998728084e-05,
+        4.0224999998783595e-05
+      ],
+      "conditional_drift_se": [
+        7.926556707660033e-05,
+        7.926556707660034e-05
+      ],
+      "conditional_drift_z": [
+        -0.5074712953211528,
+        0.507471295321853
+      ],
+      "energy_conservation_error": 0.0,
+      "alpha": null,
+      "alpha_status": "NOT MODELED: no detector event-time law"
+    },
+    "S3a": {
+      "target": [
+        0.5,
+        0.3,
+        0.2
+      ],
+      "initial_counts": [
+        1000,
+        600,
+        400
+      ],
+      "initial_shares": [
+        0.5,
+        0.3,
+        0.2
+      ],
+      "capacity": 2000,
+      "trials": 20000,
+      "resolved": 19999,
+      "unresolved": 1,
+      "resolved_fraction": 0.99995,
+      "outcome_counts": [
+        9901,
+        6114,
+        3984
+      ],
+      "outcome_frequencies": [
+        0.4950747537376869,
+        0.3057152857642882,
+        0.1992099604980249
+      ],
+      "wilson_99": [
+        [
+          0.4859705766708295,
+          0.5041821981669323
+        ],
+        [
+          0.2973888035556816,
+          0.3141706546384652
+        ],
+        [
+          0.19203485872382395,
+          0.20658460357623784
+        ]
+      ],
+      "tv_vs_quantized_initial": 0.0057152857642882166,
+      "tv_vs_requested_target": 0.0057152857642882166,
+      "mean_absorption_steps": 3083.142107105355,
+      "median_absorption_steps": 2553.0,
+      "conditional_drift_mean_delta": [
+        -3.8075000000581394e-05,
+        2.652499999244995e-05,
+        1.155000000088724e-05
+      ],
+      "conditional_drift_se": [
+        7.885446430637721e-05,
+        7.237609143321695e-05,
+        6.281783690884965e-05
+      ],
+      "conditional_drift_z": [
+        -0.4828515460157929,
+        0.3664884282529288,
+        0.1838649748103647
+      ],
+      "energy_conservation_error": 0.0,
+      "alpha": null,
+      "alpha_status": "NOT MODELED: no detector event-time law"
+    },
+    "S3b": {
+      "target": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "initial_counts": [
+        667,
+        667,
+        666
+      ],
+      "initial_shares": [
+        0.3335,
+        0.3335,
+        0.333
+      ],
+      "capacity": 2000,
+      "trials": 20000,
+      "resolved": 19998,
+      "unresolved": 2,
+      "resolved_fraction": 0.9999,
+      "outcome_counts": [
+        6665,
+        6625,
+        6708
+      ],
+      "outcome_frequencies": [
+        0.3332833283328333,
+        0.3312831283128313,
+        0.33543354335433545
+      ],
+      "wilson_99": [
+        [
+          0.3247531024853278,
+          0.3419241579924788
+        ],
+        [
+          0.3227665326114891,
+          0.33991165480666313
+        ],
+        [
+          0.3268888589716912,
+          0.3440874050452438
+        ]
+      ],
+      "tv_vs_quantized_initial": 0.0024335433543354323,
+      "tv_vs_requested_target": 0.00210021002100208,
+      "mean_absorption_steps": 3236.298629862986,
+      "median_absorption_steps": 2688.0,
+      "conditional_drift_mean_delta": [
+        -8.55499999924958e-05,
+        0.00011100000000563437,
+        -2.5449999994486827e-05
+      ],
+      "conditional_drift_se": [
+        7.458821776920595e-05,
+        7.460256179992338e-05,
+        7.421619107058785e-05
+      ],
+      "conditional_drift_z": [
+        -1.1469639917822982,
+        1.4878845622396357,
+        -0.3429170862498325
+      ],
+      "energy_conservation_error": 0.0,
+      "alpha": null,
+      "alpha_status": "NOT MODELED: no detector event-time law"
+    },
+    "S3c": {
+      "target": [
+        0.7,
+        0.2,
+        0.1
+      ],
+      "initial_counts": [
+        1400,
+        400,
+        200
+      ],
+      "initial_shares": [
+        0.7,
+        0.2,
+        0.1
+      ],
+      "capacity": 2000,
+      "trials": 20000,
+      "resolved": 19999,
+      "unresolved": 1,
+      "resolved_fraction": 0.99995,
+      "outcome_counts": [
+        14153,
+        3975,
+        1871
+      ],
+      "outcome_frequencies": [
+        0.7076853842692135,
+        0.19875993799689984,
+        0.09355467773388669
+      ],
+      "wilson_99": [
+        [
+          0.6993326870150554,
+          0.7159003049784105
+        ],
+        [
+          0.19159116248103922,
+          0.20612855335749833
+        ],
+        [
+          0.08838415028874833,
+          0.09899483721121885
+        ]
+      ],
+      "tv_vs_quantized_initial": 0.007685384269213495,
+      "tv_vs_requested_target": 0.007685384269213495,
+      "mean_absorption_steps": 2529.6878843942195,
+      "median_absorption_steps": 1933.0,
+      "conditional_drift_mean_delta": [
+        -9.96499999981193e-05,
+        4.002499999999909e-05,
+        5.9625000001284345e-05
+      ],
+      "conditional_drift_se": [
+        7.259971267015497e-05,
+        6.271267550465443e-05,
+        4.765367416686584e-05
+      ],
+      "conditional_drift_z": [
+        -1.372594963989223,
+        0.6382282318193951,
+        1.2512151695271025
+      ],
+      "energy_conservation_error": 0.0,
+      "alpha": null,
+      "alpha_status": "NOT MODELED: no detector event-time law"
+    },
+    "S4a": {
+      "target": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+      ],
+      "initial_counts": [
+        800,
+        600,
+        400,
+        200
+      ],
+      "initial_shares": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+      ],
+      "capacity": 2000,
+      "trials": 20000,
+      "resolved": 19997,
+      "unresolved": 3,
+      "resolved_fraction": 0.99985,
+      "outcome_counts": [
+        8050,
+        6029,
+        3950,
+        1968
+      ],
+      "outcome_frequencies": [
+        0.40256038405760863,
+        0.30149522428364256,
+        0.19752962944441665,
+        0.09841476221433215
+      ],
+      "wilson_99": [
+        [
+          0.39366054211049756,
+          0.41152487299911206
+        ],
+        [
+          0.29320254647303506,
+          0.3099196014754359
+        ],
+        [
+          0.19037787074275683,
+          0.20488206422797675
+        ],
+        [
+          0.09312102978812606,
+          0.10397492917400936
+        ]
+      ],
+      "tv_vs_quantized_initial": 0.004055608341251196,
+      "tv_vs_requested_target": 0.004055608341251196,
+      "mean_absorption_steps": 3311.978896834525,
+      "median_absorption_steps": 2771.0,
+      "conditional_drift_mean_delta": [
+        -4.549999993941345e-06,
+        -5.0025000006115317e-05,
+        -7.324999998420401e-06,
+        6.190000000137752e-05
+      ],
+      "conditional_drift_se": [
+        7.8090797303565e-05,
+        7.232854430226721e-05,
+        6.38468813915893e-05,
+        4.74725168017501e-05
+      ],
+      "conditional_drift_z": [
+        -0.05826550824233457,
+        -0.6916356535126233,
+        -0.1147276082835479,
+        1.3039123301567939
+      ],
+      "energy_conservation_error": 0.0,
+      "alpha": null,
+      "alpha_status": "NOT MODELED: no detector event-time law"
+    },
+    "S4b": {
+      "target": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "initial_counts": [
+        500,
+        500,
+        500,
+        500
+      ],
+      "initial_shares": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "capacity": 2000,
+      "trials": 20000,
+      "resolved": 19999,
+      "unresolved": 1,
+      "resolved_fraction": 0.99995,
+      "outcome_counts": [
+        5045,
+        4954,
+        5057,
+        4943
+      ],
+      "outcome_frequencies": [
+        0.2522626131306565,
+        0.24771238561928097,
+        0.2528626431321566,
+        0.2471623581179059
+      ],
+      "wilson_99": [
+        [
+          0.244434465471883,
+          0.2602551074589884
+        ],
+        [
+          0.23993357842141108,
+          0.25565855806515897
+        ],
+        [
+          0.2450280753246113,
+          0.2608611595549592
+        ],
+        [
+          0.23938959407616417,
+          0.25510285229076507
+        ]
+      ],
+      "tv_vs_quantized_initial": 0.005125256262813127,
+      "tv_vs_requested_target": 0.005125256262813127,
+      "mean_absorption_steps": 3470.563328166408,
+      "median_absorption_steps": 2907.0,
+      "conditional_drift_mean_delta": [
+        -6.662499999884886e-05,
+        0.00021787499999958992,
+        -6.0424999999336704e-05,
+        -9.08249999995725e-05
+      ],
+      "conditional_drift_se": [
+        6.850456790798552e-05,
+        6.871335914875042e-05,
+        6.885410380180037e-05,
+        6.926918923300355e-05
+      ],
+      "conditional_drift_z": [
+        -0.9725628820597587,
+        3.1707808015605083,
+        -0.8775802263474779,
+        -1.3111890149899228
+      ],
+      "energy_conservation_error": 0.0,
+      "alpha": null,
+      "alpha_status": "NOT MODELED: no detector event-time law"
+    }
+  },
+  "coincidence": {
+    "sfit_alpha": null,
+    "status": "UNRESOLVED: detector event-time/energy law absent. A single global absorbing record would force alpha=0 by construction.",
+    "independent_bernoulli_control": {
+      "definition": "all-trials joint firing (not time-window coincidence)",
+      "P_i": [
+        0.20137,
+        0.19899,
+        0.1998
+      ],
+      "alpha": 1.011222948071408,
+      "expected_alpha": 1.0
+    }
+  },
+  "interpretation": {
+    "born_result": "For a bounded martingale absorbed at a vertex, optional stopping gives P(K=k)=x_k(0), subject to finite-capacity quantization and unresolved trajectories.",
+    "not_established": [
+      "derivation of exchange kernel from braid dynamics",
+      "physical identity of the exchanged energy-bearing variable",
+      "detector event timing and energy uptake",
+      "time-window coincidence suppression alpha<1",
+      "full carrier-detector back-reaction"
+    ]
+  }
+}
