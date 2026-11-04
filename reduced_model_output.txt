@@ -1,0 +1,46 @@
+================================================================================================
+Reduced model | runs=40000 
+script sha256 21e32be852b9a3773409c025c25b91f62d921a29e4c678521d137139fce58571
+input pair_stats.json sha256 b0ea955b21fee83dc6354ea44f4f989a2b8fb251d05f6e18522eb1cf1fa202c8  (matches frozen)
+================================================================================================
+PREDICTIONS (written before any comparison)
+  gamma=1.0 k=1 eps=0.30: P=[0.5142, 0.2914, 0.1944]  P(ch0)-0.5 = +0.0141 +- 0.0025  absorbed=1.0000
+  gamma=1.0 k=1 eps=0.15: P=[0.5058, 0.2992, 0.195]  P(ch0)-0.5 = +0.0058 +- 0.0025  absorbed=1.0000
+  gamma=1.0 k=1 eps=0.10: P=[0.5118, 0.2974, 0.1908]  P(ch0)-0.5 = +0.0118 +- 0.0025  absorbed=1.0000
+  gamma=1.0 k=1 eps=0.05: P=[0.5077, 0.2977, 0.1947]  P(ch0)-0.5 = +0.0077 +- 0.0025  absorbed=1.0000
+  gamma=1.0 k=2 eps=0.30: P=[0.5289, 0.2944, 0.1767]  P(ch0)-0.5 = +0.0289 +- 0.0025  absorbed=1.0000
+  gamma=1.0 k=2 eps=0.15: P=[0.5442, 0.2849, 0.1709]  P(ch0)-0.5 = +0.0442 +- 0.0025  absorbed=1.0000
+  gamma=1.0 k=2 eps=0.10: P=[0.5406, 0.2883, 0.171]  P(ch0)-0.5 = +0.0406 +- 0.0025  absorbed=1.0000
+  gamma=1.0 k=2 eps=0.05: P=[0.5368, 0.2878, 0.1754]  P(ch0)-0.5 = +0.0368 +- 0.0025  absorbed=1.0000
+  gamma=1.0 k=3 eps=0.30: P=[0.5494, 0.2833, 0.1674]  P(ch0)-0.5 = +0.0494 +- 0.0025  absorbed=1.0000
+  gamma=1.0 k=3 eps=0.15: P=[0.5538, 0.2837, 0.1625]  P(ch0)-0.5 = +0.0538 +- 0.0025  absorbed=1.0000
+  gamma=1.0 k=3 eps=0.10: P=[0.5526, 0.283, 0.1644]  P(ch0)-0.5 = +0.0526 +- 0.0025  absorbed=1.0000
+  gamma=1.0 k=3 eps=0.05: P=[0.5476, 0.2851, 0.1673]  P(ch0)-0.5 = +0.0476 +- 0.0025  absorbed=1.0000
+  gamma=1.0 k=4 eps=0.30: P=[0.551, 0.2857, 0.1632]  P(ch0)-0.5 = +0.0510 +- 0.0025  absorbed=1.0000
+  gamma=1.0 k=4 eps=0.15: P=[0.5529, 0.2834, 0.1637]  P(ch0)-0.5 = +0.0529 +- 0.0025  absorbed=1.0000
+  gamma=1.0 k=4 eps=0.10: P=[0.5534, 0.2814, 0.1652]  P(ch0)-0.5 = +0.0534 +- 0.0025  absorbed=1.0000
+  gamma=1.0 k=4 eps=0.05: P=[0.5506, 0.2839, 0.1656]  P(ch0)-0.5 = +0.0505 +- 0.0025  absorbed=1.0000
+  gamma=0.5 k=4 eps=0.30: P=[0.4874, 0.3015, 0.2112]  P(ch0)-0.5 = -0.0126 +- 0.0025  absorbed=1.0000
+  gamma=0.5 k=4 eps=0.10: P=[0.4844, 0.3044, 0.2112]  P(ch0)-0.5 = -0.0156 +- 0.0025  absorbed=1.0000
+  gamma=2.0 k=4 eps=0.30: P=[0.6262, 0.2516, 0.1223]  P(ch0)-0.5 = +0.1262 +- 0.0024  absorbed=1.0000
+  gamma=2.0 k=4 eps=0.10: P=[0.64, 0.2478, 0.1123]  P(ch0)-0.5 = +0.1400 +- 0.0024  absorbed=1.0000
+
+Predictions frozen: /mnt/attach/outputs/sfit_part4/reduced_model_predictions.json
+sha256 97620802ee9bc3fc8f1123849afaccf5433c0cc8f501a973756602f644e269ac
+
+COMPARISON with cross_test.py (gamma = 1, measured, 40,000 runs):
+  eps=0.30 k=1: predicted 0.5141  measured 0.5548  z=-11.53  DISAGREE
+  eps=0.30 k=2: predicted 0.5289  measured 0.5548  z=-7.35  DISAGREE
+  eps=0.30 k=3: predicted 0.5494  measured 0.5548  z=-1.55  AGREE
+  eps=0.30 k=4: predicted 0.5510  measured 0.5548  z=-1.07  AGREE
+  eps=0.15 k=1: predicted 0.5058  measured 0.5569  z=-14.49  DISAGREE
+  eps=0.15 k=2: predicted 0.5442  measured 0.5569  z=-3.60  DISAGREE
+  eps=0.15 k=3: predicted 0.5538  measured 0.5569  z=-0.87  AGREE
+  eps=0.15 k=4: predicted 0.5529  measured 0.5569  z=-1.14  AGREE
+  eps=0.10 k=1: predicted 0.5118  measured 0.5556  z=-12.43  DISAGREE
+  eps=0.10 k=2: predicted 0.5406  measured 0.5556  z=-4.25  DISAGREE
+  eps=0.10 k=3: predicted 0.5526  measured 0.5556  z=-0.84  AGREE
+  eps=0.10 k=4: predicted 0.5534  measured 0.5556  z=-0.64  AGREE
+
+Wall time 789 s
+EXIT 0

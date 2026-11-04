@@ -1,0 +1,31 @@
+================================================================================================
+Validation at GAMMA = 0.5, 2 | runs=40000 
+script sha256 5c009937126f09f57c483d9ead50616c284e58304e508e1e4bc31c8e0d80b5e2
+predictions file sha256 97620802ee9bc3fc8f1123849afaccf5433c0cc8f501a973756602f644e269ac
+================================================================================================
+  gamma=0.5 batch 1/10 (126 s)
+  gamma=0.5 batch 2/10 (264 s)
+  gamma=0.5 batch 3/10 (389 s)
+  gamma=0.5 batch 4/10 (521 s)
+  gamma=0.5 batch 5/10 (657 s)
+  gamma=0.5 batch 6/10 (790 s)
+  gamma=0.5 batch 7/10 (914 s)
+  gamma=0.5 batch 8/10 (1046 s)
+  gamma=0.5 batch 9/10 (1182 s)
+  gamma=0.5 batch 10/10 (1317 s)
+  gamma=0.5 eps=0.30: measured [0.4852, 0.3032, 0.2116]  predicted [0.4874, 0.3015, 0.2112]  z=+0.62  AGREE
+  gamma=0.5 eps=0.10: measured [0.481, 0.3054, 0.2137]  predicted [0.4844, 0.3044, 0.2112]  z=+0.98  AGREE
+  gamma=2.0 batch 1/10 (1448 s)
+  gamma=2.0 batch 2/10 (1578 s)
+  gamma=2.0 batch 3/10 (1695 s)
+  gamma=2.0 batch 4/10 (1823 s)
+  gamma=2.0 batch 5/10 (1952 s)
+  gamma=2.0 batch 6/10 (2072 s)
+  gamma=2.0 batch 7/10 (2211 s)
+  gamma=2.0 batch 8/10 (2335 s)
+  gamma=2.0 batch 9/10 (2460 s)
+  gamma=2.0 batch 10/10 (2575 s)
+  gamma=2.0 eps=0.30: measured [0.6334, 0.2511, 0.1156]  predicted [0.6262, 0.2516, 0.1223]  z=-2.11  AGREE
+  gamma=2.0 eps=0.10: measured [0.6486, 0.2469, 0.1046]  predicted [0.64, 0.2478, 0.1123]  z=-2.53  AGREE
+Wall time 2575 s
+EXIT 0

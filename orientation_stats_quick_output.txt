@@ -1,0 +1,68 @@
+================================================================================================
+Orientation statistics (substrate only) | runs=400 T=500 LMAX=200 (QUICK)
+script sha256 a72651277479dab53f4b5a4a7c02b67b351b72cf96f84b338dbb7955e941da3a
+================================================================================================
+
+GAMMA = 0.5: crossings per run 300 (rate 0.600 per unit time)
+  STAGE 1  pair   pi_p                      E[s | p]
+           (0, 1)  0.3338 [0.3310,0.3366]   +0.0015 [-0.0098,+0.0128]
+           (0, 2)  0.3318 [0.3291,0.3345]   -0.0026 [-0.0142,+0.0091]
+           (1, 2)  0.3344 [0.3317,0.3372]   -0.0034 [-0.0146,+0.0079]
+  STAGE 2  K summed over p = q (same pair) and p != q (shared-defect pairs), by lag:
+           l=  1: same -0.21894   different +0.25275
+           l=  2: same +0.30154   different -0.22665
+           l=  3: same -0.34529   different +0.21176
+           l=  5: same -0.32781   different +0.22052
+           l= 10: same +0.32893   different -0.21803
+           l= 20: same +0.32999   different -0.21630
+           l= 50: same +0.32695   different -0.21668
+           l=100: same +0.33024   different -0.21716
+           l=200: same +0.32674   different -0.21422
+           cumulative sum to l= 25: same -0.2628   different +0.2405
+           cumulative sum to l= 50: same +0.0723   different +0.0504
+           cumulative sum to l=100: same +0.0759   different +0.0626
+           cumulative sum to l=200: same +0.0356   different +0.0482
+
+GAMMA = 1.0: crossings per run 302 (rate 0.605 per unit time)
+  STAGE 1  pair   pi_p                      E[s | p]
+           (0, 1)  0.3340 [0.3306,0.3375]   +0.0001 [-0.0076,+0.0078]
+           (0, 2)  0.3337 [0.3302,0.3373]   +0.0033 [-0.0048,+0.0115]
+           (1, 2)  0.3322 [0.3287,0.3357]   +0.0037 [-0.0047,+0.0121]
+  STAGE 2  K summed over p = q (same pair) and p != q (shared-defect pairs), by lag:
+           l=  1: same -0.36462   different +0.20926
+           l=  2: same +0.25231   different -0.24408
+           l=  3: same -0.36239   different +0.20677
+           l=  5: same -0.32469   different +0.21660
+           l= 10: same +0.32796   different -0.21830
+           l= 20: same +0.32919   different -0.21914
+           l= 50: same +0.32600   different -0.22302
+           l=100: same +0.32736   different -0.21939
+           l=200: same +0.32661   different -0.21453
+           cumulative sum to l= 25: same -0.4663   different +0.1746
+           cumulative sum to l= 50: same -0.1366   different -0.0475
+           cumulative sum to l=100: same -0.1436   different -0.0512
+           cumulative sum to l=200: same -0.1471   different -0.0291
+
+GAMMA = 2.0: crossings per run 299 (rate 0.598 per unit time)
+  STAGE 1  pair   pi_p                      E[s | p]
+           (0, 1)  0.3337 [0.3288,0.3386]   +0.0005 [-0.0055,+0.0065]
+           (0, 2)  0.3321 [0.3274,0.3368]   -0.0006 [-0.0065,+0.0053]
+           (1, 2)  0.3342 [0.3294,0.3390]   -0.0008 [-0.0066,+0.0051]
+  STAGE 2  K summed over p = q (same pair) and p != q (shared-defect pairs), by lag:
+           l=  1: same -0.52605   different +0.15528
+           l=  2: same +0.33169   different -0.21795
+           l=  3: same -0.37940   different +0.20261
+           l=  5: same -0.33140   different +0.21416
+           l= 10: same +0.33112   different -0.21784
+           l= 20: same +0.32970   different -0.21376
+           l= 50: same +0.32713   different -0.21713
+           l=100: same +0.32821   different -0.21612
+           l=200: same +0.32904   different -0.21356
+           cumulative sum to l= 25: same -0.5639   different +0.1399
+           cumulative sum to l= 50: same -0.2384   different -0.0813
+           cumulative sum to l=100: same -0.2370   different -0.0793
+           cumulative sum to l=200: same -0.2347   different -0.0734
+
+Frozen output: /mnt/attach/outputs/sfit_part4/orientation_stats.json
+sha256 of output 449df94757fca0b3eb73441d79ba80ba3697e8830a66c5b4523569d6808d4ca6
+Wall time 8 s

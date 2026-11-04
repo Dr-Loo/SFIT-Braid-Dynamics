@@ -1,0 +1,59 @@
+========================================================================================================
+Crossing-sign test | runs=40000 (batches of 4000) H=0.999 x0=[0.5, 0.3, 0.2] 
+script sha256 f66334d62ac15b88b32c64020e7c3b01889bc0e24643c1c59dac402ab086c79e
+========================================================================================================
+  batch 1/10 done (270 s)
+  batch 2/10 done (558 s)
+  batch 3/10 done (839 s)
+  batch 4/10 done (1096 s)
+  batch 5/10 done (1372 s)
+  batch 6/10 done (1657 s)
+  batch 7/10 done (1929 s)
+  batch 8/10 done (2193 s)
+  batch 9/10 done (2469 s)
+  batch 10/10 done (2764 s)
+
+Q1  outcomes   (bias b = P(ch0) - 0.5, 99% Wilson; Born test: TV_hi <= 0.02)
+  eps0.30: P=[0.5548, 0.2799, 0.1653]  b=+0.0548 [+0.0484,+0.0612]  TV_hi=0.0612 Born FAIL  E[s|prev+]=-0.1496  absorbed=1.0000  median events=172
+  eps0.15: P=[0.5569, 0.28, 0.1632]  b=+0.0569 [+0.0505,+0.0633]  TV_hi=0.0633 Born FAIL  E[s|prev+]=-0.1501  absorbed=1.0000  median events=732
+  eps0.10: P=[0.5556, 0.282, 0.1624]  b=+0.0556 [+0.0492,+0.0620]  TV_hi=0.0619 Born FAIL  E[s|prev+]=-0.1503  absorbed=1.0000  median events=1664
+  CTL0.30: P=[0.5004, 0.2989, 0.2007]  b=+0.0004 [-0.0060,+0.0068]  TV_hi=0.0075 Born PASS  E[s|prev+]=+0.0008  absorbed=1.0000  median events=158
+  PAIRreal0.30: P=[0.5079, 0.2966, 0.1955]  b=+0.0079 [+0.0015,+0.0143]  TV_hi=0.0141 Born PASS  E[s|prev+]=-0.1501  absorbed=1.0000  median events=254
+  PAIRcoin0.30: P=[0.4617, 0.3086, 0.2297]  b=-0.0383 [-0.0447,-0.0319]  TV_hi=0.0442 Born FAIL  E[s|prev+]=+0.0005  absorbed=1.0000  median events=226
+
+  Paired differences in P(ch0) between EPS arms (same crossings), 99% interval:
+    eps0.30 - eps0.10: -0.0008 [-0.0079,+0.0063]
+    eps0.30 - eps0.15: -0.0021 [-0.0080,+0.0039]
+    eps0.15 - eps0.10: +0.0013 [-0.0034,+0.0059]
+  Pooled bias over the three EPS arms (per-run average): +0.0558 [+0.0504,+0.0612]
+
+Q2  mean stopped population E[x_0(min(t,tau))] - 0.5 by event count (99% interval)
+  eps0.30: 25:+0.0203*  50:+0.0331*  100:+0.0455*  200:+0.0532*  400:+0.0545*  800:+0.0546*  1600:+0.0546*  3200:+0.0546*
+  eps0.15: 25:+0.0062*  50:+0.0110*  100:+0.0204*  200:+0.0355*  400:+0.0477*  800:+0.0552*  1600:+0.0566*  3200:+0.0566*
+  eps0.10: 25:+0.0029*  50:+0.0050*  100:+0.0099*  200:+0.0198*  400:+0.0318*  800:+0.0462*  1600:+0.0537*  3200:+0.0554*
+  CTL0.30: 25:-0.0004  50:+0.0008  100:+0.0004  200:-0.0003  400:+0.0003  800:+0.0003  1600:+0.0002  3200:+0.0002
+  PAIRreal0.30: 25:+0.0010  50:+0.0027  100:+0.0043  200:+0.0073*  400:+0.0078*  800:+0.0077*  1600:+0.0077*  3200:+0.0077*
+  PAIRcoin0.30: 25:-0.0163*  50:-0.0223*  100:-0.0303*  200:-0.0366*  400:-0.0376*  800:-0.0382*  1600:-0.0384*  3200:-0.0385*
+  (* = 99% interval excludes 0)
+
+Q3  sign-memory structure (unstopped substrate, 2,000 runs x T = 500):
+  same pair, gap [0,0.5)          : E[s * s_prev] = -1.0000  (n=80158)
+  same pair, gap [0.5,1)          : E[s * s_prev] = -1.0000  (n=104097)
+  same pair, gap [1,2)            : E[s * s_prev] = -1.0000  (n=136318)
+  same pair, gap [2,5)            : E[s * s_prev] = -0.4562  (n=182588)
+  same pair, gap [5,1e+09)        : E[s * s_prev] = -0.0403  (n=78774)
+  other pair, gap [0,0.5)         : E[s * s_prev] = +0.7042  (n=114260)
+  other pair, gap [0.5,1)         : E[s * s_prev] = +0.4575  (n=93065)
+  other pair, gap [1,2)           : E[s * s_prev] = +0.3757  (n=135212)
+  other pair, gap [2,5)           : E[s * s_prev] = +0.2639  (n=189935)
+  other pair, gap [5,1e+09)       : E[s * s_prev] = +0.0525  (n=78737)
+
+========================================================================================================
+DECISION (computed):
+  Control CTL: Born PASS, sign memory +0.0008
+  PAIRcoin0.30 (v0 artefact): P(ch0) = 0.4617, bias -0.0383 [-0.0447,-0.0319]  -> predicted NOT Born: CONFIRMED
+  H0 (no bias, Born at every EPS): REJECTED
+  H1 (positive, EPS-independent bias): SUPPORTED
+========================================================================================================
+Wall time 2786 s. Results: /mnt/attach/outputs/sfit_part4/cross_test_results.json
+EXIT 0

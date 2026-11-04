@@ -1,0 +1,32 @@
+================================================================================================
+Pair statistics (substrate only) | runs=2000 T=2000 dt=0.02 
+script sha256 27085c2827f81522e166b95c563f1c8fef243fc656c6e06775c4838632f96af9
+================================================================================================
+
+GAMMA = 0.5: 2402448 crossings; topological rule violated in 9436 of 2400448 consecutive pairs (3.93e-03)
+  order-1 transition matrix P(next | last):
+    from (0, 1): 0.2193  0.3920  0.3887
+    from (0, 2): 0.3887  0.2192  0.3921
+    from (1, 2): 0.3917  0.3896  0.2187
+  Markov check, max |P(next | k+1 history) - P(next | k history)|: k=1: 0.0555, k=2: 0.0332, k=3: 0.0212, k=4: 0.0210
+  order used: k = 4  (FLAGGED: no order <= 4 passed)
+
+GAMMA = 1.0: 2399459 crossings; topological rule violated in 9677 of 2397459 consecutive pairs (4.04e-03)
+  order-1 transition matrix P(next | last):
+    from (0, 1): 0.3642  0.3193  0.3164
+    from (0, 2): 0.3163  0.3642  0.3195
+    from (1, 2): 0.3204  0.3172  0.3624
+  Markov check, max |P(next | k+1 history) - P(next | k history)|: k=1: 0.1360, k=2: 0.0644, k=3: 0.0331, k=4: 0.0267
+  order used: k = 4  (FLAGGED: no order <= 4 passed)
+
+GAMMA = 2.0: 2401776 crossings; topological rule violated in 9550 of 2399776 consecutive pairs (3.98e-03)
+  order-1 transition matrix P(next | last):
+    from (0, 1): 0.5278  0.2375  0.2347
+    from (0, 2): 0.2352  0.5281  0.2367
+    from (1, 2): 0.2374  0.2347  0.5279
+  Markov check, max |P(next | k+1 history) - P(next | k history)|: k=1: 0.1812, k=2: 0.1134, k=3: 0.0733, k=4: 0.1044
+  order used: k = 4  (FLAGGED: no order <= 4 passed)
+
+Frozen output: /mnt/attach/outputs/sfit_part4/pair_stats.json
+sha256 of output b0ea955b21fee83dc6354ea44f4f989a2b8fb251d05f6e18522eb1cf1fa202c8
+Wall time 27 s
