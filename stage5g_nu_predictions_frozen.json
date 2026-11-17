@@ -1,0 +1,33 @@
+{
+  "name": "Stage 5G prospective small-r crossing-count test",
+  "status": "prospective candidate; coefficients fixed from existing single/pair-insertion calculations",
+  "nu0": "0.6666666666666666",
+  "nu1": -1.28898,
+  "nu1_se": 0.000316,
+  "nu2_candidate": 3.222716168167672,
+  "nu2_se": 0.025402954736779386,
+  "r_values": [
+    0.01,
+    0.02,
+    0.03
+  ],
+  "primary_seed": 2026111701,
+  "smoke_seed": 2026111699,
+  "primary_groups": 20,
+  "primary_tumbles_per_group": 2000000,
+  "burnin": 2000,
+  "validation": {
+    "primary_metrics": [
+      "mean crossings per tumble",
+      "between-group SE",
+      "residual-to-precomputed-quad",
+      "effective-curvature per r"
+    ],
+    "interpretation": "No posthoc tuning; \u03bd2 is candidate; compare only independently seeded observations",
+    "uncertainty": "normal z uses group SE and independent theoretical integration SE; no assumed finite-r remainder bound"
+  },
+  "coefficient_source": "stage5g_gamma2_candidate.json: nu2; stage5f_kernel_replicates.py: nu1; coefficient values transcribed and frozen",
+  "disclosures": [
+    "Existing Stage 5F full-model outputs at other r have been seen; these seeds are fresh, not a claim that quadratic model was undiscovered before all previous testing."
+  ]
+}

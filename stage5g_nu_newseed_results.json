@@ -1,0 +1,54 @@
+{
+  "status": "prospective fresh seed, candidate nu2 (not proved)",
+  "mode": "primary",
+  "script_sha256": "b98b1d02a1e8919efda41b8287edb0c51bf8c1f5cce329afabcda2a0e12257df",
+  "predictions_sha256": "e46081c26161ca29f935f8bb960481518b9b107d6619804fecbd606681d8b7c0",
+  "r_values": [
+    0.01,
+    0.02,
+    0.03
+  ],
+  "groups": 20,
+  "tumbles_per_group": 2000000,
+  "burnin": 2000,
+  "root_seed": 2026111701,
+  "elapsed_seconds": 9.147746086120605,
+  "results": [
+    {
+      "r": 0.01,
+      "nu_measured": 0.65403425,
+      "se_between_groups": 9.011690871774088e-05,
+      "nu_linear_pred": 0.6537768666666667,
+      "nu_quadratic_pred_candidate": 0.6540991382834834,
+      "residual_to_quad": -6.48882834833886e-05,
+      "z_vs_quad": -0.7193179424493852,
+      "nu2_effective": 2.5738333333336083,
+      "n_groups": 20,
+      "tumbles_per_group": 2000000
+    },
+    {
+      "r": 0.02,
+      "nu_measured": 0.64224515,
+      "se_between_groups": 0.00012895133772086438,
+      "nu_linear_pred": 0.6408870666666666,
+      "nu_quadratic_pred_candidate": 0.6421761531339337,
+      "residual_to_quad": 6.899686606631761e-05,
+      "z_vs_quad": 0.532772261299942,
+      "nu2_effective": 3.395208333333566,
+      "n_groups": 20,
+      "tumbles_per_group": 2000000
+    },
+    {
+      "r": 0.03,
+      "nu_measured": 0.63069785,
+      "se_between_groups": 0.00012399154841740993,
+      "nu_linear_pred": 0.6279972666666667,
+      "nu_quadratic_pred_candidate": 0.6308977112180175,
+      "residual_to_quad": -0.00019986121801751633,
+      "z_vs_quad": -1.5807098673413968,
+      "nu2_effective": 3.000648148148155,
+      "n_groups": 20,
+      "tumbles_per_group": 2000000
+    }
+  ]
+}

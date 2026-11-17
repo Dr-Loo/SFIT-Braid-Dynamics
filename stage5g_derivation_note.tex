@@ -1,0 +1,241 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,bm,booktabs,enumitem,tabularx}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{parskip}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\E}{\mathbb E}\newcommand{\Prb}{\mathbb P}\newcommand{\dd}{\mathrm d}
+\newcommand{\R}{\mathcal R}
+\newcommand{\N}{\mathcal N}
+\title{SFIT Part V / Stage 5G\\Theorem A: Completed-Block Stability and the Adjacent-Cluster Problem}
+\author{Dr\_Loo (Luiz Puodzius)}
+\date{16 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove an averaged stability estimate for a \emph{single} incomplete relaxation followed by a complete relaxation in the three-defect, isotropic heading-refresh substrate. For a fixed choice of the two refreshed defects, the probability that the \emph{total signed crossing reward} differs from its ballistic counterpart is at most $Cq(1+\log(1/q))$. The proof includes a torus-map argument for longitudinal anti-concentration, a chord-geometry argument for a repeated defect, and an oriented-area sign analysis for two different refreshed defects. This establishes absolute convergence and an $O(r^2)$ \emph{Beta-law remainder} for the isolated one-insertion integrals, not their identification with the full stationary derivative. We give the exact three-interval four-arm geometry for the genuinely adjacent mixed response, isolate a residual of size $uv$, and state the unproved uniform two-gap and higher-cluster estimates needed for a full remainder theorem. A separate, freshly seeded, event-driven crossing-count test is provided as a numerical diagnostic, independent of the proof.
+\end{abstract}
+
+\section{Model, rewards, and precise hypotheses}
+In time units $K^{-1}$ and length units $c/K$, each defect evolves between global heading renewals according to
+\begin{equation}\label{eq:law}
+X_d(t)=T_d+(X_d(0)-T_d)e^{-t},\qquad T_d=(\cos\phi_d,\sin\phi_d),
+\end{equation}
+where the heading-renewal rate of each defect is $r=\gamma/K$. Each global renewal selects one of three defects uniformly and redraws its angle uniformly on $[0,2\pi)$, independently of the existing angles. The global inter-renewal relaxation factor $q=e^{-\tau}$ has density $3r q^{3r-1}$ on $(0,1)$.
+
+For three start and target positions $X,T\in(\mathbb R^2)^3$, let $\R_k(X,T;q)$ be the signed over/under sum received by defect $k$ along the trajectories $T+s(X-T)$, $q\le s\le1$. Let $\N(X,T;q)$ be the number of projected pair crossings. Every pair's longitudinal gap is affine in $s$, so each pair contributes at most one crossing per interval. We exclude longitudinal ties, coincident angles, tangencies, and ambiguous simultaneous crossings; each has probability zero under the independent continuous angular law. These exceptional sets do not affect averaged statements.
+
+Draw independent initial heading positions $U=(U_1,U_2,U_3)$ and two fresh angles $V,W$ on the unit circle; draw refresh indices $i,j\in\{1,2,3\}$ independently and uniformly. Define
+\begin{equation}\label{eq:oneblock}
+Y=U^{i\leftarrow V},\quad Z=Y^{j\leftarrow W},\quad P_u=Y+u(U-Y),\qquad 0\le u<1.
+\end{equation}
+The completed two-interval reward and its ballistic counterpart are
+\begin{align}\label{eq:Lone}
+L_k(u)&=\R_k(U,Y;u)+\R_k(P_u,Z;0),\\
+L_k(0)&=\R_k(U,Y;0)+\R_k(Y,Z;0),\qquad \Delta_uL_k=L_k(u)-L_k(0).
+\end{align}
+The second relaxation is \emph{complete}: a crossing shifted out of the first interval is not automatically lost. Put
+\begin{equation}\label{eq:w}
+w(u)=u\bigl(1+\log(1/u)\bigr),\qquad 0<u\le1.
+\end{equation}
+All constants below may depend on the finite number of defects, but not on $u$, $i$, $j$, or $k$.
+
+\section{Theorem A: a proved isolated completed-block bound}
+\begin{lemma}[Torus-coordinate anti-concentration]\label{lem:torus}
+For independent uniform angles $\alpha,\beta$,
+\begin{equation}\label{eq:arcgap}
+\Prb\bigl(|\cos\alpha-\cos\beta|\le t\bigr)
+ \le C_0t\bigl(1+\log(1/t)\bigr),\quad 0<t\le\tfrac12.
+\end{equation}
+The same bound holds for the product $|\sin((\alpha-\beta)/2)\sin((\chi-\beta)/2)|$ with independent uniform $\alpha,\beta,\chi$.
+\end{lemma}
+\begin{proof}
+The map $(\alpha,\beta)\mapsto (\alpha+\beta,\alpha-\beta)$ modulo $2\pi$ is a measure-preserving two-to-one covering of the torus. Thus the half-sum and half-difference \emph{modulo $\pi$}, as far as their absolute sines are concerned, have independent uniform distributions. By
+\[
+|\cos\alpha-\cos\beta|=2\left|\sin\frac{\alpha+\beta}{2}\right|\left|\sin\frac{\alpha-\beta}{2}\right|,
+\]
+the problem is a small-product bound for two independent variables whose densities are bounded near zero. Splitting $\{AB\le t\}$ into $\{A\le t\}$ and $\{A>t,B\le t/A\}$ gives $Ct+Ct\int_t^1\dd a/a$, which proves \eqref{eq:arcgap}. For the second product, condition on $\beta$; the other two angles are independent, and the two absolute sine factors are conditionally independent with the same bounded-near-zero densities.
+\end{proof}
+
+\begin{lemma}[Same-defect re-tumble]\label{lem:same}
+Conditionally on $j=i$, the completed-block signed-reward difference satisfies
+\[\Prb(\Delta_u L_k\ne0\mid i,j=i)\le C_{=}w(u).\]
+\end{lemma}
+\begin{proof}
+Fix either stationary partner $\ell\ne i$ and set
+\[a=U_i^x-U_\ell^x,\quad b=V^x-U_\ell^x,\quad c=W^x-U_\ell^x.\]
+The gap after the first interrupted interval is $b_u=(1-u)b+ua$. The completed trajectory consists of chord pieces $U_i\to P_u\to W$; relative to the ballistic chords, a pair of opposite-direction longitudinal crossings can be eliminated only if $b_u$ and $b$ have different signs (or one is zero, a null event). The stationary partner remains on the circle while the mover follows a chord in the closed disk, so the chord lemma fixes both crossing tokens from that partner's hemisphere sign. No additional signed change occurs unless a crossing pair is eliminated.
+
+For $0<u\le1/2$, $bb_u<0$ implies $(1-u)|b|\le u|a|\le2u$, hence $|b|\le4u$. There are only two possible partners. Lemma~\ref{lem:torus} and a union bound give the claimed $C_{=}w(u)$. For $u>1/2$, enlarge the constant, using $w(u)\ge1/2$ and the trivial probability bound one.
+\end{proof}
+
+\begin{lemma}[Different-defect overlap]\label{lem:other}
+Conditionally on $j\ne i$, the completed-block signed-reward difference satisfies
+\[\Prb(\Delta_u L_k\ne0\mid i,j\ne i)\le C_{\ne}w(u).\]
+\end{lemma}
+\begin{proof}
+Let $\ell$ be the third defect. The pairs $(i,\ell)$ and $(j,\ell)$ traverse the same complete chords, with $\ell$ stationary during the two intervals; their signed crossing totals agree in the two descriptions. Thus only pair $(i,j)$ can change.
+
+For that pair put
+\[A=V_i,\qquad B=U_j,\qquad C=W_j,\qquad a=U_i^x-U_j^x,\quad b=A^x-B^x,\quad b_u=(1-u)b+ua.\]
+Changes in the longitudinal crossing pattern require $b_ub<0$, hence $|b|\le4u$ for $u\le1/2$. Lemma~\ref{lem:torus} bounds the event $E_{\rm gap}$ by $Cw(u)$.
+
+A second change can occur even with unchanged crossing counts: both defects move during the second interval and the over/under sign can reverse. The baseline and perturbed oriented-area determinants are
+\begin{align}\label{eq:Ddet}
+D_0&=\det(C-B,A-C)=\det(A-B,A-C),\\
+D_u&=D_0+u\det(U_i-A,A-C),\qquad |D_u-D_0|\le2u\|A-C\|.
+\end{align}
+For the relative vectors $\Delta_{\rm start}$ and $\Delta_{\rm end}$,
+projected crossing interpolation gives
+\[
+\operatorname{sgn}(\Delta y_{\rm crossing})
+=\operatorname{sgn}\left(
+\frac{\det(\Delta_{\rm start},\Delta_{\rm end})}
+{\Delta x_{\rm start}-\Delta x_{\rm end}}
+\right),
+\]
+up to an overall fixed sign convention. Outside $E_{\rm gap}$ the relevant longitudinal orientation is identical in the two constructions; hence a changed over/under sign requires $D_0D_u\le0$.
+
+If $A,B,C$ have angles $\alpha,\beta,\chi$, respectively, the unit-circle identity gives
+\begin{equation}\label{eq:detproduct}
+|D_0|=2\|A-C\|\left|\sin\frac{\alpha-\beta}{2}\right|\left|\sin\frac{\chi-\beta}{2}\right|.
+\end{equation}
+Consequently $D_0D_u\le0$ implies
+\[\left|\sin\frac{\alpha-\beta}{2}\sin\frac{\chi-\beta}{2}\right|\le u.\]
+The angles $\alpha,\beta,\chi$ are independent. Conditioning on $\beta$ and applying Lemma~\ref{lem:torus} shows that $E_{\rm orientation}$ also has probability at most $Cw(u)$. The union $E_{\rm gap}\cup E_{\rm orientation}$ contains every nonzero completed-block signed response; null degeneracies were excluded at the outset. Enlarging the constant for $u>1/2$ proves the result.
+\end{proof}
+
+\begin{theorem}[Theorem A --- isolated completed-block stability]\label{thm:A}
+For the three-defect independent uniform-heading model, with $L_k(u)$ defined by \eqref{eq:Lone}, there exists a finite $C$ such that for all choices of refreshed defects and all $0<u<1$,
+\begin{equation}\boxed{\Prb(\Delta_uL_k\ne0\mid i,j)\le Cw(u).}\label{eq:A}
+\end{equation}
+For every $p\ge1$, the corresponding moment estimate is
+\begin{equation}\label{eq:Amoment}
+\E|\Delta_uL_k|^p\le8^pCw(u),\qquad
+\|\Delta_uL_k\|_2\le8\sqrt{Cw(u)}.
+\end{equation}
+\end{theorem}
+\begin{proof}Combine Lemmas~\ref{lem:same} and \ref{lem:other}. Each of the two intervals contributes at most two signed tokens for a fixed defect, hence $|\Delta_uL_k|\le8$. Apply this bound on the event $\Delta_uL_k\ne0$.\end{proof}
+
+\section{Consequences and scope of the proof}
+Let $F_\nu(u)$ be the averaged single-gap change in number of crossings and $F_V(u)$ the isolated insertion response for asymptotic reward variance, including the bounded ballistic resolvent
+\[H=(I-P)^{-1}h=3h_1+\tfrac32h_2,\qquad \|H\|_\infty<\infty.\]
+By Theorem~\ref{thm:A}, $|F_\nu(u)|+|F_V(u)|\le C' w(u)$. In particular the \emph{isolated-insertion coefficients}
+\[I_F=3\int_0^1\frac{F(u)}u\dd u\]
+exist absolutely; this is a statement about the integrals, \emph{not yet} a proof that $I_F=F_{\rm stationary}'(0+)$. The Beta-law correction satisfies
+\begin{align}
+\left|3r\int_0^1\frac{F(u)}u(u^{3r}-1)\dd u\right|
+&\le9C'r^2\int_0^1(1+\log(1/u))\log(1/u)\dd u\\
+&=27C'r^2.\label{eq:betaO2}
+\end{align}
+Thus no $r\log r$ term arises from the isolated Beta-law factor under Theorem~\ref{thm:A}.
+
+For separated completed blocks, conditional expectations of their signed differences have mean zero by global transverse reflection and $L^2$ norm bounded by $C\sqrt{w(u)}$. Since the ballistic heading operator satisfies $\|P^n\|_{L^2_0}\le(2/3)^n$, appropriately conditioned separated-block responses obey
+\begin{equation}\label{eq:separated}
+|K_\infty(u,v;s)|\le C\left(\tfrac23\right)^{s-1}\sqrt{w(u)w(v)},\qquad s\ge1,
+\end{equation}
+provided the blocks have a common stationary heading-boundary Markov representation. The right-hand side is integrable against $\dd u/u\,\dd v/v$ and summable in $s$. This addresses \emph{isolated pairs}, not arbitrary clusters of finite-$r$ interruptions.
+
+\section{Hypothesis B: adjacent mixed response (open)}
+Draw a third independent refreshed heading and index $\ell$, and define targets $U\to Y\to Z\to Q$. The three intervals have relaxation factors $u,v,0$; all four arms $(u,v),(u,0),(0,v),(0,0)$ use identical headings and refresh indices. The exact intermediate positions in the $(u,v)$ arm are
+\begin{equation}\label{eq:uvresid}
+P_1=Y+u(U-Y),\qquad P_2=Z+v(Y-Z)+uv(U-Y).
+\end{equation}
+The genuine two-gap residual is the last term, $uv(U-Y)$, but it does not by itself bound discontinuous crossing changes. After the third heading refresh, the final complete interval sends every arm to the common target $Q$. Denote the sum of its three signed interval rewards by $S_{uv}$, and similarly $S_{u0},S_{0v},S_{00}$. Put
+\begin{align}
+A&=S_{u0}-S_{00}, &B&=S_{0v}-S_{00},\\
+C&=S_{uv}-S_{u0}-S_{0v}+S_{00}.\label{eq:Bmixed}
+\end{align}
+The precise four-arm interaction of the squared total reward is
+\begin{align}\label{eq:adjidentity}
+&S_{uv}^2-S_{u0}^2-S_{0v}^2+S_{00}^2\\
+&\hspace{1em}=2AB+2C(S_{00}+A+B)+C^2.\nonumber
+\end{align}
+The common ballistic past/future contributes an additional $2C[H(U)+H(Q)]$. Thus the adjacent infinite-tail kernel has the exact representation
+\begin{equation}\label{eq:adjkernel}
+K_\infty(u,v;0)=\E\left[2AB+C^2+2C\{S_{00}+A+B+H(U)+H(Q)\}\right].
+\end{equation}
+
+\begin{conjecture}[Hypothesis B: averaged adjacent stability]\label{conj:B}
+A sufficient local result is a uniform bound, with $C_B<\infty$,
+\begin{equation}\label{eq:Btarget}
+\E|C(u,v)|\le C_B\sqrt{w(u)w(v)},\qquad 0<u,v<1.
+\end{equation}
+Together with Theorem~\ref{thm:A}, the bounded local rewards and resolvent, and Cauchy--Schwarz, this yields $|K_\infty(u,v;0)|\le C\sqrt{w(u)w(v)}$.
+\end{conjecture}
+
+\paragraph{What the existing lemmas do and do not prove.}
+The single-gap estimates give $\E|A|\le Cw(u)$ and $\E|B|\le Cw(v)$, and
+$|\E[AB]|\le C\sqrt{w(u)w(v)}$. These are enough for the first term in \eqref{eq:adjkernel}. They do \emph{not} bound $C$, because the configuration with one incomplete interval changes the starting geometry of the next. It is not enough to require separate $E_{\rm gap}$ or $E_{\rm orientation}$ events in a \emph{single predetermined pair}: a mixed signed response may involve a changed longitudinal threshold followed by a sign change in a different interval, and the variance interaction $2AB$ can couple distinct pairs.
+
+\paragraph{Proof attack.}
+For each of the five index patterns $i=j=\ell$, $i=j\ne\ell$, $i=\ell\ne j$, $j=\ell\ne i$, and $i,j,\ell$ all distinct, apply the event-driven root formula to the three intervals in all four arms. Express each pair's root and signed determinant as algebraic functions of the independent circle angles, $u$, and $v$; identify the finite set of events where the four-arm reward changes. The key missing step is an anti-concentration bound for these \emph{joint} threshold events that is uniform in the other fixed gap. Theorem~\ref{thm:A} supplies the two base small-product estimates, but no such uniform-in-$v$ bound has yet been established.
+
+A convenient sufficient strengthening, explicitly \emph{unproved}, is
+\begin{equation}\label{eq:uniformB}
+\sup_{v\in[0,1)}\E|S_{uv}-S_{0v}|\le Cw(u),\qquad
+\sup_{u\in[0,1)}\E|S_{uv}-S_{u0}|\le Cw(v).
+\end{equation}
+If established, $\E|C|\le 2C\min(w(u),w(v))$, stronger than \eqref{eq:Btarget}.
+
+\section{Higher clusters, stationarity, and the correct theorem target}
+For a finite window, the M\"obius inversion over active relaxation gaps is exact. The independent single-gap response contributes its isolated integral plus an $O(r^2)$ Beta-law remainder; isolated adjacent and separated pairs contribute $O(r^2)$ if Hypothesis B and \eqref{eq:separated} hold. However, neither hypothesis proves geometric growth control for all connected $k$-gap kernels. A separate anchored-cluster bound and a uniform stationary-limit/boundary argument are required before passing $M\to\infty$.
+
+\begin{conjecture}[Regular finite-renewal expansion; full Stage 5G target]
+For sufficiently small $r>0$,
+\[\Gamma_{kk}(r)=\frac{13}{30}+\Gamma_1r+O(r^2),\]
+where $\Gamma_1=(3/4)V_1-(23/20)\nu_1$ is defined by the exact isolated single-insertion integrals. This result is \emph{conditional on} Hypothesis B, connected-cluster summability and stationary-limit control; it is not a corollary of Theorem A alone.
+\end{conjecture}
+
+\section{Prospective small-$r$ crossing-count test}
+For the exact event-driven Part I simulation, the count observable is the mean number of pair crossings per global tumble,
+$\nu(r)$. The frozen ballistic intercept is $\nu_0=2/3$. Independently computed candidate coefficients used for the prospective test are $\nu_1=-1.28898\pm0.000316$ from the Stage 5F isolated insertion integral, and $\nu_2=3.222716\pm0.025403$ from the Stage 5G isolated one- and two-gap calculation. These uncertainties are numerical integration standard errors, not mathematical remainder bounds.
+
+Freeze the prediction before fresh-seed simulation:
+\begin{equation}\label{eq:nupred}
+\nu_{\rm candidate}(r)=\frac23-1.28898r+3.222716168167672r^2.
+\end{equation}
+Primary settings: $r=0.01,0.02,0.03$; independent groups with fresh seeds, $20$ groups of $2\times10^6$ measured tumbles per $r$, $2,000$ burn-in tumbles per group; event-driven root solving, no fixed time step. Archive groupwise counts, seed ledger, script hash, predictions hash, and a comparison to both the linear and candidate quadratic laws. The $r^2$ coefficient is a \emph{candidate}, not proved; finite-$r$ higher-order error is not yet bounded. A small smoke run may check functionality but cannot validate the curvature.
+
+\subsection*{Prospective fresh-seed results (added after the frozen predictions)}
+The prediction file was written and SHA-256-hashed before the primary simulation was launched. The executable uses exact affine crossing roots and independent seeded groups (no time discretization); the same code first passed a separate smoke run using a different seed. The primary data comprise $20\times2{,}000{,}000=40{,}000{,}000$ measured tumbles per condition, with 2,000 burn-in tumbles per group. No coefficient was fitted to these observations.
+\begin{center}\small
+\begin{tabular}{@{}rrrrr@{}}\toprule
+$r$ & Measured $\widehat\nu\pm\mathrm{SE}$ & Frozen quadratic & $z$ & $\widehat\nu_2^{\rm eff}$\\\midrule
+0.010 & $0.6540343\pm0.0000901$ & 0.6540991 & $-0.72$ & 2.574\\
+0.020 & $0.6422452\pm0.0001290$ & 0.6421762 & $+0.53$ & 3.395\\
+0.030 & $0.6306979\pm0.0001240$ & 0.6308977 & $-1.58$ & 3.001\\\bottomrule
+\end{tabular}
+\end{center}
+The $z$ statistics combine the between-group simulation standard error and the previously frozen numerical-integration uncertainties in $\nu_1$ and $\nu_2$, without a separate finite-$r$ remainder allowance. Agreement is compatible with the candidate $\nu_2\simeq3.2227$, but the finite-$r$ expansion and its remainder are still unproved. These measurements are not substitutes for Theorem A or Hypothesis B.
+
+\paragraph{Provenance.} Frozen prediction SHA-256 and simulator SHA-256, respectively:
+\begin{quote}\footnotesize\ttfamily
+ e46081c26161ca29f935f8bb960481518b9b107d6619804fecbd606681d8b7c0\par
+ b98b1d02a1e8919efda41b8287edb0c51bf8c1f5cce329afabcda2a0e12257df
+\end{quote}
+The archived JSON and group CSV record the seeds, group counts, results, and hashes.
+
+\begin{center}\footnotesize
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\textwidth}{@{}p{0.31\textwidth}p{0.20\textwidth}X@{}}\toprule
+Statement & Current status & Required next step\\\midrule
+Theorem A, isolated block & Proved & Retain hypotheses\\
+Single-gap Beta correction & $O(r^2)$ proved & None for isolated term\\
+Separated isolated pairs & Conditional spectral bound & Confirm boundary representation\\
+Hypothesis B, adjacent & Open & Joint near-degenerate geometry\\
+Connected $k\ge3$ clusters & Open & Uniform anchored growth bound\\
+Stationary limit & Open & Boundary/tail estimates\\
+$\nu_2\simeq3.2227$ & Numerical candidate & Fresh-seed event-driven test\\\bottomrule
+\end{tabularx}
+\end{center}
+
+\end{document}

@@ -1,0 +1,41 @@
+Script SHA-256: dedab0adc78857ecdd675b41666a9b9cd5086efd5b8429a781cde2b65074c954
+Kernel SHA-256 (stage5f_insertion_kernels.py): 35420dd156e492b962d58a375debbdd1f997c7d6c7d0bdcae98829c59f194762
+seed=20261116 groups=16 samples per (group,s)=1048576 smax=6 Lpair=10.0 Lsingle=20.0
+CANDIDATE coefficient; assumes the second-order expansion exists.
+
+single-gap: V2 = +8.1767 +- 0.0635   nu2 = +4.9297 +- 0.0098
+  group  1/16 done  (64 s)
+  group  2/16 done  (107 s)
+  group  3/16 done  (150 s)
+  group  4/16 done  (191 s)
+  group  5/16 done  (233 s)
+  group  6/16 done  (275 s)
+  group  7/16 done  (320 s)
+  group  8/16 done  (361 s)
+  group  9/16 done  (405 s)
+  group 10/16 done  (450 s)
+  group 11/16 done  (494 s)
+  group 12/16 done  (538 s)
+  group 13/16 done  (584 s)
+  group 14/16 done  (629 s)
+  group 15/16 done  (674 s)
+  group 16/16 done  (717 s)
+
+exactness check, s>=1: max|DD L| = 0.0e+00, max|DD count| = 0.0e+00   (both must be 0)
+pair kernel by separation (9 x int int K da db):
+  s=0: -2.03527 +- 0.08365
+  s=1: +0.30441 +- 0.02078
+  s=2: +0.16751 +- 0.02241
+  s=3: +0.11244 +- 0.01516
+  s=4: +0.06266 +- 0.01722
+  s=5: +0.03076 +- 0.02260
+  s=6: +0.07825 +- 0.02172
+  tail s>6 (geometric, dominant mode): +0.15650 +- 0.04345
+pair: V2 = -1.1227 +- 0.0902   nu2 = -1.7070 +- 0.0244
+
+V2 = +7.0540 +- 0.1281   nu2 = +3.2227 +- 0.0254   quotient term -1.5*Gamma1*nu1 = -0.6418
+CANDIDATE Gamma_2 = +0.9426 +- 0.0956  (numerical; includes Gamma_1 uncertainty)
+Cross-check only (data already seen): Stage 5F fitted r^2 coefficient C = +0.66 +- 0.10
+pair truncation: |K| <= C w(min(u,v)) implies the region u or v < e^-10 is O(Lpair^3 e^-Lpair)
+
+Saved stage5g_gamma2_candidate.json  SHA-256: 7b4e260cc728b8e6559b1e24cb58001e7a2bf19a002548ccd5f05c11ee0723f6
