@@ -1,0 +1,77 @@
+{
+  "_schema_note": "Draft for Zenodo web deposit form; not a tested Zenodo API payload.",
+  "resource_type": "Publication > Working paper",
+  "title": "SFIT Part V / Stage 5G: Theorem A: Completed-Block Stability and the Adjacent-Cluster Problem",
+  "creators": [
+    {
+      "family_name": "Puodzius",
+      "given_name": "Luiz",
+      "display_in_manuscript": "Dr_Loo (Luiz Puodzius)",
+      "orcid": null,
+      "affiliation": null
+    }
+  ],
+  "version": "v2 (manuscript version; use Zenodo New version only if an earlier Stage 5G record is already public)",
+  "publication_date": "Set to actual first public release date; 2026-11-17 only if released today",
+  "language": "English",
+  "description": "This working note studies the three-defect isotropic heading-refresh substrate of SFIT Part V. It proves an averaged completed-block stability estimate for an isolated interrupted relaxation: the probability that the total signed over/under crossing reward differs from the ballistic reference is bounded by Cq[1 + log(1/q)]. The proof combines longitudinal anti-concentration for independent uniform headings, the chord lemma for repeated-defect renewals, and an oriented-area sign analysis for overlapping motion of different defects. The estimate establishes absolute convergence of isolated single-insertion response integrals and an O(r^2) Beta-law correction; it does not establish differentiability of the full stationary Green–Kubo coefficient. The note formulates the adjacent two-gap mixed response, identifies the residual displacement proportional to uv, and states the unproved adjacent-stability, higher-cluster, and stationary-limit estimates needed for a full small-r expansion theorem. A separate event-driven v2 primary test of the candidate second-order crossing-count coefficient, nu_2 = 3.222716 (numerical integration SE 0.025403), agrees with a fresh-seed extrapolated estimate 3.2301 (statistical SE 0.0404), with a prespecified decision statistic z = 0.15 (PASS). This is coefficient-level numerical validation under the stated decision rule, not a proof of the full stationary expansion. The second-order Green–Kubo coefficient Gamma_2 remains a numerical candidate.",
+  "keywords": [
+    "SFIT",
+    "stochastic braid substrate",
+    "Green–Kubo persistence",
+    "ballistic limit",
+    "heading-refresh dynamics",
+    "crossing statistics",
+    "completed-block stability",
+    "Markov operator",
+    "renewal processes",
+    "event-driven Monte Carlo",
+    "cluster expansion"
+  ],
+  "license_recommendation": "CC BY 4.0 for manuscript (confirm author approval). Code may use a separate software license.",
+  "related_identifiers": "Add actual parent SFIT Part V DOI if available; do not invent. Use isSupplementTo or related-work relationship as appropriate.",
+  "publication_status": "Working note / not peer reviewed; Stage 5G full remainder theorem is conditional and unproved",
+  "requested_visibility": "Public after provenance audit",
+  "v2_numerical_claim": {
+    "nu2_theory": 3.222716168167672,
+    "nu2_theory_numerical_se": 0.025402954736779386,
+    "nu2_extrapolation": 3.2301,
+    "nu2_extrapolation_stat_se": 0.0404,
+    "nu2_extrapolation_nu1_se": 0.0042,
+    "decision_z": 0.15,
+    "decision": "PASS",
+    "fit_chi2": 0.64,
+    "fit_df": 2,
+    "fit_p": 0.727,
+    "v1_data_reused": false,
+    "freeze_before_primary": "reported by user; timestamp evidence not available for independent audit"
+  },
+  "v2_numerical_provenance_user_reported": {
+    "simulator_sha256": "547126a9667714becb03ebde9799ef0b99b92cb0137f6b34ead08d10ee6621ed",
+    "predictions_sha256": "4a6e9d9a28e6fdbb10039b49693c1401ad824a2c7fee92dbbac60c98ee554229",
+    "source_file_verification": "not independently verified; v2 source files not attached",
+    "root_seed": 2026111702,
+    "groups_per_r": 40,
+    "measured_tumbles_per_group": 100000000,
+    "burnin_tumbles_per_group": 2000,
+    "threads": 4,
+    "r": [
+      0.01,
+      0.02,
+      0.03,
+      0.04
+    ],
+    "nu_hat": [
+      0.65410229,
+      0.64212774,
+      0.6307048,
+      0.61980921
+    ],
+    "standard_error": [
+      1.242e-05,
+      1.094e-05,
+      1.224e-05,
+      1.278e-05
+    ]
+  }
+}

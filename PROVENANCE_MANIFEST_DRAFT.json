@@ -1,0 +1,57 @@
+{
+  "record_title": "SFIT Part V / Stage 5G: Theorem A: Completed-Block Stability and the Adjacent-Cluster Problem",
+  "manifest_status": "draft for author review before Zenodo publication",
+  "verified_local_file_hashes": {
+    "stage5g_derivation_note_v2.pdf": {
+      "sha256": "9ace835ead8cad84279cffb07fb704c63bbb69fa204341a3bd927482ef0409ab",
+      "size_bytes": 450712,
+      "verification": "computed from local file"
+    },
+    "stage5g_derivation_note_v2.tex": {
+      "sha256": "52000c20e280905746205b0d1761dffb7ad993330f1d3fc03dbb90cac4b4a1fd",
+      "size_bytes": 20507,
+      "verification": "computed from local file"
+    },
+    "zenodo_metadata_draft.json": {
+      "sha256": "4b71d6471d7c1d669ed79ff5385c791cda582051522dd66b527bf4386c895e0b",
+      "size_bytes": 4197,
+      "verification": "computed from local file"
+    }
+  },
+  "v2_primary_hashes_reported_by_user_not_verified": {
+    "simulator_sha256": "547126a9667714becb03ebde9799ef0b99b92cb0137f6b34ead08d10ee6621ed",
+    "predictions_sha256": "4a6e9d9a28e6fdbb10039b49693c1401ad824a2c7fee92dbbac60c98ee554229",
+    "source_file_verification": "not independently verified; v2 source files not attached",
+    "root_seed": 2026111702,
+    "groups_per_r": 40,
+    "measured_tumbles_per_group": 100000000,
+    "burnin_tumbles_per_group": 2000,
+    "threads": 4,
+    "r": [
+      0.01,
+      0.02,
+      0.03,
+      0.04
+    ],
+    "nu_hat": [
+      0.65410229,
+      0.64212774,
+      0.6307048,
+      0.61980921
+    ],
+    "standard_error": [
+      1.242e-05,
+      1.094e-05,
+      1.224e-05,
+      1.278e-05
+    ]
+  },
+  "required_before_claiming_reproducible_numerical_provenance": [
+    "Obtain actual stage5g_nu_prospective_v2.py and verify full SHA-256 matches 547126a9...",
+    "Obtain frozen v2 prediction JSON and verify full SHA-256 matches 4a6e9d9a...",
+    "Obtain primary stage5g_nu_v2_results.json and group-level stage5g_nu_v2_groups.csv, including seeds and raw measurements",
+    "Obtain primary console output/log and the separately frozen acceptance-rule/tolerance specification with timestamps or provenance record",
+    "Create checksums for these verified artifacts and include them in final archival package",
+    "Do not represent reported ordering of freeze and run as independently audited without source logs or timestamps"
+  ]
+}
