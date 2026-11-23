@@ -1,0 +1,353 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,booktabs,graphicx,array,tabularx}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{problem}[theorem]{Open problem}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prb}{\mathbb P}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\R}{\mathcal R}
+\newcommand{\N}{\mathcal N}
+
+\title{SFIT Part V / Stage 5G\\Theorem A: Completed-Block Stability and the Adjacent-Cluster Problem\\[4pt]\large Version v2: Adjacent Mixed Stability for Isolated Pairs}
+\author{Dr\_Loo (Luiz Puodzius)\thanks{ORCID 0009-0009-3616-4115. Contact: SFITSuite@proton.me}}
+\date{19 November 2026 (version v2)}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove an averaged stability estimate for a single incomplete relaxation followed by a complete relaxation in the three-defect, isotropic heading-refresh substrate. For a fixed choice of the two refreshed defects, the probability that the total signed crossing reward differs from its ballistic counterpart is at most $Cq(1+\log(1/q))$. The proof includes a torus-map argument for longitudinal anti-concentration, a chord-geometry argument for a repeated defect, and an oriented-area sign analysis for two different refreshed defects. This establishes absolute convergence and an $O(r^2)$ Beta-law remainder for the isolated one-insertion integrals. 
+
+Version v2 adds Theorem~B for isolated adjacent pairs. The total reward of a three-interval window is a function of the signs of finitely many explicit polynomial predicates (longitudinal gaps and oriented-area determinants). An exact rational-arithmetic computation shows that, for all five refresh-index patterns and both perturbation directions (the first gap, and the second gap started from an in-flight residual), every relevant predicate family is non-degenerate on the closed parameter interval, after removal of identified structural factors. Combined with a normalized Remez-type sublevel bound for trigonometric polynomials, derived from Nazarov's form of Turán's lemma, this gives $\E|C(u,v)|\le K\min(u,v)^\eta$ for some $\eta>0$, which makes the adjacent-pair contribution $O(r^2)$. Connected clusters of three or more active gaps and the uniform stationary limit remain open, so the full small-$r$ expansion is not yet proved. A separate pre-registered, freshly seeded event-driven test of the independently calculated second-order crossing-count coefficient $\nu_2=3.2227\pm0.0254$ passed its frozen criterion ($z=0.15$); this is numerical validation, not proof.
+\end{abstract}
+
+\section*{Version v2 update summary}
+Version v1 stated adjacent mixed stability as Conjecture (Hypothesis~B). Version v2 proves it for isolated adjacent pairs (Theorem~\ref{thm:B}, Section~\ref{sec:B}). The proof has three ingredients: a sign-predicate representation of the three-interval reward (Lemma~\ref{lem:pred}); a normalized sublevel bound for trigonometric polynomials (Lemma~\ref{lem:remez}, proved in Appendix~\ref{app:remez} from Nazarov's form of Turán's lemma); and an exact rational-arithmetic check that every relevant predicate family is non-degenerate on the closed parameter interval, for the first-gap and the residual-start perturbations separately. The exponent $\eta>0$ is not explicit. The status table is updated accordingly. Connected $k\ge3$ clusters and the stationary limit are stated as open problems, not as conjectured results.
+
+\section*{Results used from Stages 5E and 5F}
+This note builds on two earlier results for the same substrate, summarised here so that it stands alone. Notation and setting follow the companion persistence note~\cite{pnote}.
+
+\paragraph{Exact ballistic endpoint (Stage 5E).} In the limit $r\to0$ the tumble-level dynamics reduce to a ballistic heading-refresh chain. A moving defect follows a chord inside the unit disk, so at a crossing with a stationary defect $j$ the over/under token is fixed by $j$'s hemisphere sign $\varepsilon_j=\operatorname{sgn}(y_j)$ (chord lemma); for uniform headings $\varepsilon$ is a fair coin independent of $x$. The refresh operator $P=\tfrac13(E_1+E_2+E_3)$ is self-adjoint and positive semidefinite, the reward is symmetric, and the conditional reward $h$ has only one- and two-defect components, giving for $m\ge1$
+\[
+c(m)=\langle h,P^{m-1}h\rangle_\pi=\tfrac{4}{45}\bigl(\tfrac23\bigr)^{m-1}+\tfrac{2}{135}\bigl(\tfrac13\bigr)^{m-1},\qquad c(0)=\tfrac49 .
+\]
+Hence $\sigma_R^2=46/45$, $\Gamma_0=13/30$ and $\theta_0=10/23$, with every $c(m)\ge0$.
+
+\paragraph{First-order slope (Stage 5F).} The isolated single-insertion integrals give $\Gamma_1=\tfrac34V_1-\tfrac{23}{20}\nu_1=-0.332\pm0.003$ and $\nu_1=-1.28870\pm0.00006$. A pre-registered exact event-driven simulation of the full Part~I dynamics at $r=0.005$--$0.04$ passed all three frozen criteria. This is consistent with a regular $O(r)$ approach to $13/30$; it does not prove differentiability.
+
+\section{Model, rewards, and precise hypotheses}
+In time units $K^{-1}$ and length units $c/K$, each defect evolves between global heading renewals according to
+\begin{equation}\label{eq:law}
+X_d(t)=T_d+(X_d(0)-T_d)e^{-t},\qquad T_d=(\cos\phi_d,\sin\phi_d),
+\end{equation}
+where the heading-renewal rate of each defect is $r=\gamma/K$. Each global renewal selects one of three defects uniformly and redraws its angle uniformly on $[0,2\pi)$, independently of the existing angles. The global inter-renewal relaxation factor $q=e^{-\tau}$ has density $3r q^{3r-1}$ on $(0,1)$.
+
+For three start and target positions $X,T\in(\mathbb R^2)^3$, let $\R_k(X,T;q)$ be the signed over/under sum received by defect $k$ along the trajectories $T+s(X-T)$, $q\le s\le1$. Let $\N(X,T;q)$ be the number of projected pair crossings. Every pair's longitudinal gap is affine in $s$, so each pair contributes at most one crossing per interval. We exclude longitudinal ties, coincident angles, tangencies, and ambiguous simultaneous crossings; each has probability zero under the independent continuous angular law. These exceptional sets do not affect averaged statements.
+
+Draw independent initial heading positions $U=(U_1,U_2,U_3)$ and two fresh angles $V,W$ on the unit circle; draw refresh indices $i,j\in\{1,2,3\}$ independently and uniformly. Define
+\begin{equation}\label{eq:oneblock}
+Y=U^{i\leftarrow V},\quad Z=Y^{j\leftarrow W},\quad P_u=Y+u(U-Y),\qquad 0\le u<1.
+\end{equation}
+The completed two-interval reward and its ballistic counterpart are
+\begin{align}\label{eq:Lone}
+L_k(u)&=\R_k(U,Y;u)+\R_k(P_u,Z;0),\\
+L_k(0)&=\R_k(U,Y;0)+\R_k(Y,Z;0),\qquad \Delta_uL_k=L_k(u)-L_k(0).
+\end{align}
+The second relaxation is \emph{complete}: a crossing shifted out of the first interval is not automatically lost. Put
+\begin{equation}\label{eq:w}
+w(u)=u\bigl(1+\log(1/u)\bigr),\qquad 0<u\le1.
+\end{equation}
+All constants below may depend on the finite number of defects, but not on $u$, $i$, $j$, or $k$.
+
+\section{Theorem A: a proved isolated completed-block bound}
+\begin{lemma}[Torus-coordinate anti-concentration]\label{lem:torus}
+For independent uniform angles $\alpha,\beta$,
+\begin{equation}\label{eq:arcgap}
+\Prb\bigl(|\cos\alpha-\cos\beta|\le t\bigr)
+ \le C_0t\bigl(1+\log(1/t)\bigr),\quad 0<t\le\tfrac12.
+\end{equation}
+The same bound holds for the product $|\sin((\alpha-\beta)/2)\sin((\chi-\beta)/2)|$ with independent uniform $\alpha,\beta,\chi$.
+\end{lemma}
+\begin{proof}
+The map $(\alpha,\beta)\mapsto (\alpha+\beta,\alpha-\beta)$ modulo $2\pi$ is a measure-preserving two-to-one covering of the torus. Thus the half-sum and half-difference modulo $\pi$, as far as their absolute sines are concerned, have independent uniform distributions. By
+\[
+|\cos\alpha-\cos\beta|=2\left|\sin\frac{\alpha+\beta}{2}\right|\left|\sin\frac{\alpha-\beta}{2}\right|,
+\]
+the problem is a small-product bound for two independent variables whose densities are bounded near zero. Splitting $\{AB\le t\}$ into $\{A\le t\}$ and $\{A>t,B\le t/A\}$ gives $Ct+Ct\int_t^1\dd a/a$, which proves \eqref{eq:arcgap}. For the second product, condition on $\beta$; the other two angles are independent, and the two absolute sine factors are conditionally independent with the same bounded-near-zero densities.
+\end{proof}
+
+\begin{lemma}[Same-defect re-tumble]\label{lem:same}
+Conditionally on $j=i$, the completed-block signed-reward difference satisfies
+\[\Prb(\Delta_u L_k\ne0\mid i,j=i)\le C_{=}w(u).\]
+\end{lemma}
+\begin{proof}
+Fix either stationary partner $\ell\ne i$ and set
+\[a=U_i^x-U_\ell^x,\quad b=V^x-U_\ell^x,\quad c=W^x-U_\ell^x.\]
+The gap after the first interrupted interval is $b_u=(1-u)b+ua$. The completed trajectory consists of chord pieces $U_i\to P_u\to W$; relative to the ballistic chords, a pair of opposite-direction longitudinal crossings can be eliminated only if $b_u$ and $b$ have different signs (or one is zero, a null event). The stationary partner remains on the circle while the mover follows a chord in the closed disk, so the chord lemma fixes both crossing tokens from that partner's hemisphere sign. No additional signed change occurs unless a crossing pair is eliminated.
+
+For $0<u\le1/2$, $bb_u<0$ implies $(1-u)|b|\le u|a|\le2u$, hence $|b|\le4u$. There are only two possible partners. Lemma~\ref{lem:torus} and a union bound give the claimed $C_{=}w(u)$. For $u>1/2$, enlarge the constant, using $w(u)\ge1/2$ and the trivial probability bound one.
+\end{proof}
+
+\begin{lemma}[Different-defect overlap]\label{lem:other}
+Conditionally on $j\ne i$, the completed-block signed-reward difference satisfies
+\[\Prb(\Delta_u L_k\ne0\mid i,j\ne i)\le C_{\ne}w(u).\]
+\end{lemma}
+\begin{proof}
+Let $\ell$ be the third defect. The pairs $(i,\ell)$ and $(j,\ell)$ traverse the same complete chords, with $\ell$ stationary during the two intervals; their signed crossing totals agree in the two descriptions. Thus only pair $(i,j)$ can change.
+
+For that pair put
+\[A=V_i,\qquad B=U_j,\qquad C=W_j,\qquad a=U_i^x-U_j^x,\quad b=A^x-B^x,\quad b_u=(1-u)b+ua.\]
+Changes in the longitudinal crossing pattern require $b_ub<0$, hence $|b|\le4u$ for $u\le1/2$. Lemma~\ref{lem:torus} bounds the event $E_{\rm gap}$ by $Cw(u)$.
+
+A second change can occur even with unchanged crossing counts: both defects move during the second interval and the over/under sign can reverse. The baseline and perturbed oriented-area determinants are
+\begin{align}\label{eq:Ddet}
+D_0&=\det(C-B,A-C)=\det(A-B,A-C),\\
+D_u&=D_0+u\det(U_i-A,A-C),\qquad |D_u-D_0|\le2u\|A-C\|.
+\end{align}
+For the relative vectors $\Delta_{\rm start}$ and $\Delta_{\rm end}$, projected crossing interpolation gives
+\[
+\operatorname{sgn}(\Delta y_{\rm crossing})
+=\operatorname{sgn}\left(
+\frac{\det(\Delta_{\rm start},\Delta_{\rm end})}
+{\Delta x_{\rm start}-\Delta x_{\rm end}}
+\right),
+\]
+up to an overall fixed sign convention. Outside $E_{\rm gap}$ the relevant longitudinal orientation is identical in the two constructions; hence a changed over/under sign requires $D_0D_u\le0$.
+
+If $A,B,C$ have angles $\alpha,\beta,\chi$, respectively, the unit-circle identity gives
+\begin{equation}\label{eq:detproduct}
+|D_0|=2\|A-C\|\left|\sin\frac{\alpha-\beta}{2}\right|\left|\sin\frac{\chi-\beta}{2}\right|.
+\end{equation}
+Consequently $D_0D_u\le0$ implies
+\[\left|\sin\frac{\alpha-\beta}{2}\sin\frac{\chi-\beta}{2}\right|\le u.\]
+The angles $\alpha,\beta,\chi$ are independent. Conditioning on $\beta$ and applying Lemma~\ref{lem:torus} shows that $E_{\rm orientation}$ also has probability at most $Cw(u)$. The union $E_{\rm gap}\cup E_{\rm orientation}$ contains every nonzero completed-block signed response; null degeneracies were excluded at the outset. Enlarging the constant for $u>1/2$ proves the result.
+\end{proof}
+
+\begin{theorem}[Theorem A --- isolated completed-block stability]\label{thm:A}
+For the three-defect independent uniform-heading model, with $L_k(u)$ defined by \eqref{eq:Lone}, there exists a finite $C$ such that for all choices of refreshed defects and all $0<u<1$,
+\begin{equation}\boxed{\Prb(\Delta_uL_k\ne0\mid i,j)\le Cw(u).}\label{eq:A}
+\end{equation}
+For every $p\ge1$, the corresponding moment estimate is
+\begin{equation}\label{eq:Amoment}
+\E|\Delta_uL_k|^p\le8^pCw(u),\qquad
+\|\Delta_uL_k\|_2\le8\sqrt{Cw(u)}.
+\end{equation}
+\end{theorem}
+\begin{proof}Combine Lemmas~\ref{lem:same} and \ref{lem:other}. Each of the two intervals contributes at most two signed tokens for a fixed defect, hence $|\Delta_uL_k|\le8$. Apply this bound on the event $\Delta_uL_k\ne0$.\end{proof}
+
+\section{Consequences and scope of the proof}
+Let $F_\nu(u)$ be the averaged single-gap change in number of crossings and $F_V(u)$ the isolated insertion response for asymptotic reward variance, including the bounded ballistic resolvent
+\[H=(I-P)^{-1}h=3h_1+\tfrac32h_2,\qquad \|H\|_\infty<\infty.\]
+By Theorem~\ref{thm:A}, $|F_\nu(u)|+|F_V(u)|\le C' w(u)$. In particular the \emph{isolated-insertion coefficients}
+\[I_F=3\int_0^1\frac{F(u)}u\dd u\]
+exist absolutely; this is a statement about the integrals, \emph{not yet} a proof that $I_F=F_{\rm stationary}'(0+)$. The Beta-law correction satisfies
+\begin{align}
+\left|3r\int_0^1\frac{F(u)}u(u^{3r}-1)\dd u\right|
+&\le9C'r^2\int_0^1(1+\log(1/u))\log(1/u)\dd u\\
+&=27C'r^2.\label{eq:betaO2}
+\end{align}
+Thus no $r\log r$ term arises from the isolated Beta-law factor under Theorem~\ref{thm:A}.
+
+For separated completed blocks, conditional expectations of their signed differences have mean zero by global transverse reflection and $L^2$ norm bounded by $C\sqrt{w(u)}$. Since the ballistic heading operator satisfies $\|P^n\|_{L^2_0}\le(2/3)^n$, appropriately conditioned separated-block responses obey
+\begin{equation}\label{eq:separated}
+|K_\infty(u,v;s)|\le C\left(\tfrac23\right)^{s-1}\sqrt{w(u)w(v)},\qquad s\ge1,
+\end{equation}
+provided the blocks have a common stationary heading-boundary Markov representation. The right-hand side is integrable against $\dd u/u\,\dd v/v$ and summable in $s$. This addresses \emph{isolated pairs}, not arbitrary clusters of finite-$r$ interruptions.
+
+\section{Theorem B: adjacent mixed stability for isolated pairs}\label{sec:B}
+
+\subsection{The three-interval window}
+Draw a third refresh index $\ell$ and an independent fresh angle, and let $Q=Z^{\ell\leftarrow X}$. All fixed points $U$, $Y=U^{i\leftarrow V}$, $Z=Y^{j\leftarrow W}$ and $Q$ lie on the unit circle, with independent uniform angles $\Theta$. With relaxation factors $s_1,s_2\in[0,1]$,
+\begin{equation}\label{eq:Bwin}
+P_1=Y+s_1(U-Y),\qquad P_2=Z+s_2(P_1-Z).
+\end{equation}
+Interval~1 runs from $U$ toward $Y$ and stops at factor $s_1$; interval~2 runs from $P_1$ toward $Z$ and stops at $s_2$; interval~3 runs from $P_2$ toward $Q$ and completes. Write $S(s_1,s_2)$ for the total signed reward of defect $k$ over the three intervals, $S_{uv}=S(u,v)$, and
+\begin{equation}\label{eq:Bmixed}
+A=S_{u0}-S_{00},\qquad B=S_{0v}-S_{00},\qquad C(u,v)=S_{uv}-S_{u0}-S_{0v}+S_{00}.
+\end{equation}
+Since $S_{uv}=S_{00}+A+B+C$,
+\begin{equation}\label{eq:adjidentity}
+S_{uv}^2-S_{u0}^2-S_{0v}^2+S_{00}^2=2AB+2C(S_{00}+A+B)+C^2 .
+\end{equation}
+All four arms end at the same fixed-point state, so the common ballistic past and future contribute $2C[H(U)+H(Q)]$, and the adjacent kernel with exact tails is
+\begin{equation}\label{eq:adjkernel}
+K_\infty(u,v;0)=\E\bigl[2AB+C^2+2C\{S_{00}+A+B+H(U)+H(Q)\}\bigr].
+\end{equation}
+
+\subsection{Sign predicates}
+\begin{lemma}[Sign-predicate representation]\label{lem:pred}
+In an interval with relative start $\Delta S$, relative target $\Delta T$ and end factor $e$, the longitudinal gap of a pair is $g(q)=\Delta T_x+q(\Delta S_x-\Delta T_x)$, $q\in[e,1]$. The pair crosses in that interval if and only if
+\[
+g_{\rm start}=\Delta S_x\qquad\text{and}\qquad g_{\rm end}=\Delta T_x+e(\Delta S_x-\Delta T_x)
+\]
+have opposite signs, and the over/under sign of the crossing is $\operatorname{sgn}(d)\operatorname{sgn}(g_{\rm start})$, where $d=\Delta T_y\Delta S_x-\Delta T_x\Delta S_y$. Hence $S(s_1,s_2)$ is a function of the signs of the $27$ predicates $\{g_{\rm start},g_{\rm end},d\}$ over three intervals and three pairs. Each is a polynomial of degree at most two in the circle coordinates (a trigonometric polynomial of degree at most two in each angle) and a polynomial in $(s_1,s_2)$. Off a null set, no predicate that is not identically zero vanishes, and $|S|\le6$.
+\end{lemma}
+\begin{proof}
+$g$ is affine in $q$, so it has a root in $(e,1)$ iff $g(1)g(e)<0$. At the root $q^*=-\Delta T_x/(\Delta S_x-\Delta T_x)$ the transverse separation is $d/(\Delta S_x-\Delta T_x)$; since $g(q^*)=0$ and $q^*<1$, $\operatorname{sgn}(\Delta S_x-\Delta T_x)=\operatorname{sgn}g(1)=\operatorname{sgn}g_{\rm start}$. Each interval contributes at most two signed tokens per defect.
+\end{proof}
+
+\subsection{A normalized sublevel bound}
+Let $\mathcal T_{n,m}$ be the real trigonometric polynomials in $n$ angles of degree at most $m$ in each angle, with $\|p\|=\bigl(\int_{\mathbb T^n}|p|^2\bigr)^{1/2}$ (equal to the $\ell^2$ norm of the coefficients) and normalized Haar measure $|\cdot|$.
+\begin{lemma}[Normalized sublevel bound]\label{lem:remez}
+There are $C=C(n,m)<\infty$ and $\alpha=\alpha(n,m)>0$ such that, for every nonzero $p\in\mathcal T_{n,m}$ and every $\varepsilon>0$,
+\[
+\bigl|\{\Theta\in\mathbb T^n:\ |p(\Theta)|\le\varepsilon\|p\|\}\bigr|\le C\varepsilon^{\alpha}.
+\]
+\end{lemma}
+The proof (Appendix~\ref{app:remez}) uses only Nazarov's form of Turán's lemma~\cite{nazarov}. The normalization by $\|p\|$ is essential: without it no bound uniform over a family can hold, since $\delta p$ with small $\delta$ has $\Pr(|\delta p|\le\varepsilon)=1$ for $\varepsilon\ge\delta\sup|p|$.
+
+\subsection{Non-degeneracy of the predicate families (exact computation)}
+Two perturbation directions are needed, and they are not symmetric:
+\begin{itemize}
+\item[(D1)] \emph{first gap:} $s_1=s$ is perturbed from $0$, with $s_2=v\in[0,1]$ a parameter;
+\item[(D2)] \emph{second gap from an in-flight start:} $s_2=s$ is perturbed from $0$, with $s_1=u\in[0,1]$ a parameter, so interval~2 starts at the residual position $P_1$ where the chord lemma does not apply.
+\end{itemize}
+For every refresh pattern and both directions, each predicate's family $G(\cdot\,;0,p)$ ($p=v$ for D1, $p=u$ for D2) was evaluated in exact rational arithmetic at six rational points of $\mathbb T^6$, giving six polynomials in $p$. A family vanishing identically at some $p_0\in[0,1]$ would make $p_0$ a common root. The outcome:
+\begin{enumerate}
+\item Most predicate families have no common root in $[0,1]$ and are therefore non-degenerate for every parameter value.
+\item \emph{(a) Static pairs.} If a pair has $\Delta S=\Delta T$ in an interval at $s=0$, its $d$ vanishes identically there. Such a pair has no crossing at $s=0$, so any change in its contribution creates a crossing, which requires a sign change of its $g_{\rm start}$ or $g_{\rm end}$; these gap predicates are not identically zero, and $d$ never decides alone.
+\item \emph{(b) Residual-only motion.} If a pair moves in an interval only through the parameterized residual, then $\Delta S-\Delta T=p\,R$ for all $s$, so $d=\Delta T_y\Delta S_x-\Delta T_x\Delta S_y=p(\Delta T_yR_x-\Delta T_xR_y)=p\,\tilde d$. Since $p>0$ on $(0,1)$, $\operatorname{sgn}d=\operatorname{sgn}\tilde d$; every reduced family $\tilde d(\cdot\,;0,p)$ passes the check on the closed interval $[0,1]$.
+\end{enumerate}
+No other case occurs: (D1) and (D2) hold for all five patterns. The script and its output are identified in Section~\ref{sec:prov}; it labels the two directions \texttt{H1} and \texttt{H2}.
+
+\subsection{The theorem}
+\begin{theorem}[Theorem B: adjacent mixed stability]\label{thm:B}
+There are $K<\infty$ and $\eta>0$ such that, for every refresh pattern and all $u,v\in(0,1)$,
+\begin{align}
+\sup_{v\in[0,1]}\E|S(u,v)-S(0,v)|&\le Ku^{\eta},\label{eq:B1}\\
+\sup_{u\in[0,1]}\E|S(u,v)-S(u,0)|&\le Kv^{\eta},\label{eq:B2}\\
+\E|C(u,v)|&\le 2K\min(u,v)^{\eta}.\label{eq:B3}
+\end{align}
+\end{theorem}
+\begin{proof}
+\emph{Bound \eqref{eq:B1}.} Fix $v\in[0,1]$. By Lemma~\ref{lem:pred} and cases (a)--(b), $S(u,v)\ne S(0,v)$ requires a sign change on $s\in[0,u]$ of some non-degenerate predicate $G(\Theta;s,v)$ (with $d$ replaced by $\tilde d$ in case (b)). $G$ is a polynomial in $s$ on a compact set, so $L_G=\sup|\partial_sG|<\infty$, and a sign change implies $|G(\Theta;0,v)|\le L_Gu$. The map $v\mapsto\|G(\cdot\,;0,v)\|$ is continuous, since the coefficients are polynomials in $v$, and by (D1) it is nonzero on the compact interval $[0,1]$; let $c_G>0$ be its minimum. Lemma~\ref{lem:remez} gives
+\[
+\Pr\bigl(|G(\Theta;0,v)|\le L_Gu\bigr)\le\Pr\bigl(|G(\Theta;0,v)|\le (L_Gu/c_G)\|G(\cdot\,;0,v)\|\bigr)\le C\,(L_Gu/c_G)^{\alpha}
+\]
+uniformly in $v$. A union bound over the finitely many predicates and the five patterns, with $|S|\le6$, gives \eqref{eq:B1} with $\eta=\alpha$.
+
+\emph{Bound \eqref{eq:B2}.} The same argument with (D2) in place of (D1), perturbing $s_2$ from the in-flight start $P_1$ with $u\in[0,1]$ as the parameter.
+
+\emph{Bound \eqref{eq:B3}.} Two decompositions of $C$ are needed:
+\[
+C=(S_{uv}-S_{0v})-(S_{u0}-S_{00})=(S_{uv}-S_{u0})-(S_{0v}-S_{00}).
+\]
+In the first, both terms are cases of \eqref{eq:B1} (the second with $v=0$), so $\E|C|\le2Ku^{\eta}$. In the second, both terms are cases of \eqref{eq:B2} (the second with $u=0$), so $\E|C|\le2Kv^{\eta}$. Hence $\E|C|\le2K\min(u^{\eta},v^{\eta})=2K\min(u,v)^{\eta}$.
+\end{proof}
+
+\begin{remark}[Integrability; the adjacent contribution is $O(r^2)$]
+\[\iint_{(0,1)^2}\min(u,v)^{\eta}\,\frac{\dd u\,\dd v}{uv}=2\int_0^1m^{\eta-1}\log(1/m)\,\dd m=\frac{2}{\eta^2}<\infty.\]In \eqref{eq:adjkernel} every term containing $C$ is bounded by a constant times $\E|C|$, because the local rewards and the resolvent $H$ are bounded. The term $2AB$ satisfies $\E|AB|\le\|A\|_2\|B\|_2\le C\sqrt{w(u)w(v)}$ by Theorem~\ref{thm:A}, also integrable. With $f_r(q)=3rq^{3r-1}\le3r/q$, the isolated adjacent-pair contribution to $V(r)$ is $O(r^2)$. The exponent $\eta$ is not explicit and need not be.
+\end{remark}
+
+\section{Remaining proof obligations}\label{sec:open}
+Theorems~A and~B bound the isolated single-gap term and the isolated adjacent pair; separated pairs are bounded conditionally by \eqref{eq:separated}. Two steps remain before $\Gamma_{kk}(r)=\tfrac{13}{30}+\Gamma_1r+O(r^2)$ is a theorem.
+
+\begin{problem}[Clusters of three or more active gaps]
+Bound the connected $k$-gap mixed kernels so that their sum over cluster shapes, separations and $k\ge3$ converges with weights $(3r)^k$.
+\end{problem}
+\noindent The predicate representation extends to $k$-gap windows, with predicates of bounded degree in the angles. However, the number of angles grows with $k$, and Remez-type exponents obtained by slicing decrease with the dimension, roughly like $\alpha_1^{\,n}$. The bound $\eta_k\ge\eta_0>0$ that a geometric-series argument needs is therefore not expected from this method alone. A different mechanism, such as decoupling of non-overlapping residuals through the ballistic spectral gap, is likely required.
+
+\begin{problem}[Stationary limit]
+Show that the finite-window M\"obius expansion represents the stationary Green--Kubo coefficient, uniformly for $r\in(0,r_0)$, by bounding the contribution of residuals generated before the window.
+\end{problem}
+\noindent A pre-window residual affects the window only while it is active, and its $L^2$ size is controlled by Theorem~\ref{thm:A}. Its cross term with the window sum must be bounded uniformly in the window length $M$ and in $r$. The ballistic decay $\|P^s\|_{L^2_0}\le(2/3)^s$ holds for the $r=0$ chain; transferring it to the finite-$r$ process is part of the problem, and no rate is claimed here.
+
+\section{Prospective small-$r$ crossing-count test: v2 primary validation}
+For the exact event-driven Part~I simulation, the count observable is the mean number of pair crossings per global tumble, $\nu(r)$, with ballistic intercept $\nu_0=2/3$. The coefficients frozen for v2 were calculated independently of any finite-$r$ simulation:
+\[
+\nu_1=-1.28870\pm0.00006,\qquad \nu_2=3.222716168167672\pm0.025403 .
+\]
+$\nu_1$ is the analytic-$q$ isolated-insertion integral; $\nu_2$ is the Stage~5G single-gap Beta term plus the adjacent ($s=0$) pair term. The uncertainties are numerical-integration standard errors, not bounds on the finite-$r$ remainder.
+
+\paragraph{Pre-registered design.} The v2 prediction record fixes $r\in\{0.01,0.02,0.03,0.04\}$, 40 independent groups of $10^8$ measured tumbles per group and value of $r$ ($4\times10^9$ per $r$), 2{,}000 burn-in tumbles per group, root seed 2026111702, the analysis model and the decision rule. Crossings are found from their affine longitudinal roots, with no time-step error. Define the curvature
+\begin{equation}\label{eq:curv}
+c(r)=\frac{\hat\nu(r)-2/3-\nu_1r}{r^2},
+\end{equation}
+fit $c(r)=\nu_{2,\rm ext}+\nu_3r$ by weighted least squares over the four values of $r$, and score
+\begin{equation}\label{eq:zdec}
+z_{\rm decision}=\frac{|\hat\nu_{2,\rm ext}-\nu_2|}{\sqrt{\mathrm{SE}_{\rm stat}^2+\mathrm{SE}_{\nu_1}^2+\mathrm{SE}_{\nu_2}^2}},
+\end{equation}
+where $\mathrm{SE}_{\nu_1}$ is the intercept shift under $\nu_1\to\nu_1+0.00006$. PASS if $z_{\rm decision}<3$; INCONCLUSIVE if the fit has $p<0.01$ on two degrees of freedom.
+
+\begin{center}\small
+\begin{tabular}{@{}rrrr@{}}\toprule
+$r$ & $\hat\nu\pm\mathrm{SE}$ & Excess over linear law ($z$) & $c(r)\pm\mathrm{SE}$\\\midrule
+0.010 & $0.65410229\pm0.00001242$ & $+3.23\times10^{-4}$ ($+26.0$) & $3.2262\pm0.1242$\\
+0.020 & $0.64212774\pm0.00001094$ & $+1.24\times10^{-3}$ ($+112.9$) & $3.0877\pm0.0274$\\
+0.030 & $0.63070480\pm0.00001224$ & $+2.70\times10^{-3}$ ($+220.5$) & $2.9990\pm0.0136$\\
+0.040 & $0.61980921\pm0.00001278$ & $+4.69\times10^{-3}$ ($+367.0$) & $2.9316\pm0.0080$\\\bottomrule
+\end{tabular}
+\end{center}
+
+The fit gives $\hat\nu_{2,\rm ext}=3.2301\pm0.0404_{\rm stat}\pm0.0042_{\nu_1}$ and $\hat\nu_3=-7.49\pm1.10$, with $\chi^2=0.64$ on two degrees of freedom ($p=0.73$). The denominator in~\eqref{eq:zdec} is $0.0479$, so $z_{\rm decision}=0.15$: \textbf{PASS}. This validates the numerical second-order coefficient for the crossing count under the frozen criterion; it does not establish the existence of the stationary expansion, and it does not test the variance-specific pieces of $\Gamma_2$.
+
+\paragraph{Provenance and audit.} SHA-256 digests of the v2 files:
+\begin{quote}\footnotesize\ttfamily
+Simulator (stage5g\_nu\_prospective\_v2.py):\\ 547126a9667714becb03ebde9799ef0b99b92cb0137f6b34ead08d10ee6621ed\\
+Frozen predictions (stage5g\_nu\_predictions\_v2\_frozen.json):\\ 4a6e9d9a28e6fdbb10039b49693c1401ad824a2c7fee92dbbac60c98ee554229\\
+Results (stage5g\_nu\_v2\_results.json):\\ feccf96bd028bb650cb79ba59063c96e2d82476767e8cbde4cec6d61176018b8\\
+Group data (stage5g\_nu\_v2\_groups.csv):\\ 508b4559ac07973aa4c68b18dfdb7f5ea73b361fa279f0a76fe1eba062cbc1c6
+\end{quote}
+An author-local recomputation matched both frozen digests. The group CSV was re-verified independently: recomputing the means, standard errors, fit and $z_{\rm decision}$ from its 160 rows reproduces the reported verdict, and all 160 group seeds equal, in order, the sequence \texttt{SeedSequence(2026111702)}\allowbreak\texttt{.spawn(160)}. Hashes establish file identity, not chronology; the freeze-before-run order is attested by the author.
+
+\section{Provenance of the Theorem B computation}\label{sec:prov}
+\begin{quote}\footnotesize\ttfamily
+Predicate check (stage5g\_hypB\_predicate\_check.py):\\ 1b6ed17173fc382c2c4545f4c6be4b70e591ed721f9bebe70d28d992d8a1d28f\\
+Its output (stage5g\_hypB\_predicate\_check\_output.txt):\\ 4b57f83255e7f89a3e579fe016e05c9d7ed80e5297d34a089196371d90d3dbbc
+\end{quote}
+The check uses exact rational arithmetic (SymPy); it has no floating-point step and no random input. It lists every flagged predicate with its classification, (a) or (b), and reports \texttt{H1 VERIFIED} and \texttt{H2 VERIFIED} (directions D1 and D2; unrelated to the Part~V mixing hypothesis H2).
+
+\section*{Status after v2}
+Version v2 proves Theorem~B for isolated adjacent pairs and records the prospective $\nu_2$ test. The regular finite-renewal expansion still requires the two open problems of Section~\ref{sec:open}.
+
+\begin{center}\footnotesize
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.31\textwidth}>{\raggedright\arraybackslash}p{0.24\textwidth}>{\raggedright\arraybackslash}X@{}}\toprule
+Statement & Status & Next step\\\midrule
+$\Gamma_0=13/30$ (ballistic) & Proved (Stage 5E) & ---\\
+$\Gamma_1\simeq-0.332$ & Derived; prospectively validated (Stage 5F) & Proof of differentiability\\
+Theorem A, isolated block & Proved & Retain hypotheses\\
+Single-gap Beta correction & $O(r^2)$ proved & None for the isolated term\\
+Separated isolated pairs & Conditional spectral bound & Confirm boundary representation\\
+Theorem B, isolated adjacent pairs & Proved (v2; uses Nazarov's lemma and the exact predicate check) & ---\\
+Connected $k\ge3$ clusters & Open & New decoupling mechanism likely needed\\
+Stationary limit & Open & Uniform boundary bound at finite $r$\\
+$\nu_2\simeq3.2227$ & Prospectively validated (v2) & Proof open\\
+$\Gamma_2\simeq0.94\pm0.10$ & Numerical candidate & Variance-specific pieces untested\\\bottomrule
+\end{tabularx}
+\end{center}
+
+
+\appendix
+\section{Proof of Lemma~\ref{lem:remez}}\label{app:remez}
+\emph{Nazarov's lemma}~\cite{nazarov}: if $q(t)=\sum_{k=1}^{N}c_ke^{i\lambda_kt}$ and $E\subset I$ is measurable, then\[\sup_I|q|\le\bigl(A|I|/|E|\bigr)^{N-1}\sup_E|q|,\]with $A$ an absolute constant.
+
+\emph{One angle ($n=1$).} A real trigonometric polynomial of degree at most $m$ is an exponential sum with $N\le2m+1$ terms. Let $E=\{|p|\le\varepsilon\|p\|\}$ and $I=\mathbb T$. Since $\|p\|\le\sup|p|$, Nazarov's lemma gives $\|p\|\le(A/|E|)^{2m}\varepsilon\|p\|$, hence $|E|\le A\varepsilon^{1/(2m)}$.
+
+\emph{Induction.} Write $p(\theta_1,\Theta')=\sum_{|k|\le m}a_k(\Theta')e^{ik\theta_1}$ and $\rho(\Theta')=\sum_k|a_k(\Theta')|^2=\int|p(\theta_1,\Theta')|^2\,\dd\theta_1$. Then $\rho\in\mathcal T_{n-1,2m}$ is real and nonnegative, $\int\rho=\|p\|^2$, and $\|\rho\|\ge\int\rho=\|p\|^2$ by Cauchy--Schwarz. For fixed $\Theta'$ the slice $p(\cdot,\Theta')$ has norm $\sqrt{\rho(\Theta')}$, so the one-angle case gives
+\[
+\bigl|\{\theta_1:|p|\le\varepsilon\|p\|\}\bigr|\le A\bigl(\varepsilon\|p\|/\sqrt{\rho(\Theta')}\bigr)^{1/(2m)}.
+\]
+Split on $\rho(\Theta')\ge\delta\|p\|^2$. On that set the slice measure is at most $A(\varepsilon/\sqrt\delta)^{1/(2m)}$. Its complement is contained in $\{\rho\le\delta\|\rho\|\}$, which by the induction hypothesis for $\mathcal T_{n-1,2m}$ has measure at most $C'\delta^{\alpha'}$. Taking $\delta=\varepsilon$,
+\[
+\bigl|\{|p|\le\varepsilon\|p\|\}\bigr|\le C'\varepsilon^{\alpha'}+A\varepsilon^{1/(4m)},
+\]
+which proves the lemma with $\alpha(n,m)=\min\{\alpha(n-1,2m),1/(4m)\}>0$. \hfill$\square$
+
+\begin{thebibliography}{9}\raggedright
+\bibitem{part1} L.~C.~Puodzius, \emph{SFIT Stochastic-Braid Substrate, Part I}, Zenodo (2026), \href{https://doi.org/10.5281/zenodo.21866391}{doi:10.5281/zenodo.21866391}.
+\bibitem{part5} L.~C.~Puodzius, \emph{SFIT Part V} (v1), Zenodo (2026), \href{https://doi.org/10.5281/zenodo.24069084}{doi:10.5281/zenodo.24069084}.
+\bibitem{pnote} L.~C.~Puodzius, \emph{Microscopic Origins of Over-Strand Persistence in the SFIT Stochastic Braid Substrate}, Zenodo (2026), v3 \href{https://doi.org/10.5281/zenodo.24371481}{doi:10.5281/zenodo.24371481}.
+\bibitem{nazarov} F.~Nazarov, Local estimates for exponential polynomials and their applications to inequalities of the uncertainty principle type, \emph{St. Petersburg Mathematical Journal} 5(4), 663--717 (1994); original Russian \emph{Algebra i Analiz}, 1993.
+\end{thebibliography}
+
+\end{document}
