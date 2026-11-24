@@ -1,0 +1,284 @@
+{
+ "stage": "SFIT Part V Stage 5J -- programme step 1: independent pre-registered confirmation of Gamma(r)",
+ "status": "FROZEN before any primary run",
+ "frozen_scripts": {
+  "stage5j_primary_sim.py": "0fb6270ed7c8f29bd9415ece91f7b2dd045768961f3147c3dccbd1cc0d72c550",
+  "stage5j_plainloop_sim.py": "7a8627ae27aeaa9ac6ccde579da076ad3174d9f3f6caeb2e5fe04f5193fd03b9",
+  "stage5j_score.py": "32233e9a97b85ebac4bba74795c68642cc5c8bfd774df935e5ef040b667e9d1e",
+  "stage5j_build_predictions.py": "d17e56774c8d8ee409ae6c195cbfd1136d56b9dd6f5dcfe189cc7f0e99f500d8"
+ },
+ "estimator": {
+  "reward": "fixed-defect reward R_k(n) (Stage 5I eq. 2), averaged over k",
+  "cutoff": "M = max(60, floor(25/(1-rho))), rho = 3r/(1+3r); burn-in 4M; T = max(4000, 20M)",
+  "mean_subtraction": false,
+  "Gamma": "(V_M/nu - 2/3)/2",
+  "truncation_systematic": "|Gamma_M - Gamma_2M|"
+ },
+ "run_plan": {
+  "primary": [
+   {
+    "r": 0.4,
+    "G": 32,
+    "C": 2000,
+    "seed": 9104,
+    "M": 60,
+    "T": 4000,
+    "B": 240
+   },
+   {
+    "r": 0.5,
+    "G": 32,
+    "C": 2000,
+    "seed": 9105,
+    "M": 62,
+    "T": 4000,
+    "B": 248
+   },
+   {
+    "r": 0.6,
+    "G": 32,
+    "C": 2000,
+    "seed": 9106,
+    "M": 69,
+    "T": 4000,
+    "B": 276
+   },
+   {
+    "r": 1.5,
+    "G": 32,
+    "C": 2000,
+    "seed": 9115,
+    "M": 137,
+    "T": 4000,
+    "B": 548
+   },
+   {
+    "r": 3.0,
+    "G": 32,
+    "C": 2000,
+    "seed": 9130,
+    "M": 250,
+    "T": 5000,
+    "B": 1000
+   },
+   {
+    "r": 32.0,
+    "G": 32,
+    "C": 500,
+    "seed": 9320,
+    "M": 2425,
+    "T": 48500,
+    "B": 9700
+   },
+   {
+    "r": 64.0,
+    "G": 32,
+    "C": 500,
+    "seed": 9640,
+    "M": 4824,
+    "T": 96480,
+    "B": 19296
+   }
+  ],
+  "plainloop": [
+   {
+    "r": 0.02,
+    "G": 32,
+    "T": 5000000,
+    "seed": 8002,
+    "M": 60
+   },
+   {
+    "r": 0.25,
+    "G": 32,
+    "T": 5000000,
+    "seed": 8025,
+    "M": 60
+   },
+   {
+    "r": 0.5,
+    "G": 32,
+    "T": 5000000,
+    "seed": 8050,
+    "M": 62
+   },
+   {
+    "r": 1.0,
+    "G": 32,
+    "T": 5000000,
+    "seed": 8100,
+    "M": 100
+   },
+   {
+    "r": 2.0,
+    "G": 32,
+    "T": 5000000,
+    "seed": 8200,
+    "M": 174
+   }
+  ],
+  "rule": "exactly these runs, once each; no extra, duplicate, or re-seeded runs; every run is scored"
+ },
+ "predictions": {
+  "P1_intermediate": [
+   {
+    "r": 0.4,
+    "Gamma_pred": 0.3734722734094258,
+    "sigma_stat": 0.0007066647167941919,
+    "sigma_model": 0.0009479940208120263,
+    "alternatives": [
+     0.3735711019748962,
+     0.3744202674302378
+    ]
+   },
+   {
+    "r": 0.5,
+    "Gamma_pred": 0.371167,
+    "sigma_stat": 0.0005978849336217134,
+    "sigma_model": 3.0281687499356114e-05,
+    "alternatives": [
+     0.371167,
+     0.37113671831250067
+    ]
+   },
+   {
+    "r": 0.6,
+    "Gamma_pred": 0.3711971987542543,
+    "sigma_stat": 0.0006662852818829588,
+    "sigma_model": 0.0007452823849702916,
+    "alternatives": [
+     0.37194248113922457,
+     0.37120715809003124
+    ]
+   },
+   {
+    "r": 1.5,
+    "Gamma_pred": 0.4172028610150113,
+    "sigma_stat": 0.0018723888468573596,
+    "sigma_model": 0.004057792242911862,
+    "alternatives": [
+     0.41763506808229356,
+     0.41314506877209944
+    ]
+   },
+   {
+    "r": 3.0,
+    "Gamma_pred": 0.5187028299803317,
+    "sigma_stat": 0.0021510984492741684,
+    "sigma_model": 0.005970114171282792,
+    "alternatives": [
+     0.518582431427666,
+     0.5127327158090489
+    ]
+   }
+  ],
+  "P3_large_r_Gamma": [
+   {
+    "r": 32.0,
+    "Gamma_pred": 1.628477386074039,
+    "sigma_stat": 0.008242701513689766,
+    "sigma_model": 0.007800797233770362,
+    "alternative_constant_ratio": 1.6206765888402686
+   },
+   {
+    "r": 64.0,
+    "Gamma_pred": 2.309543519691399,
+    "sigma_stat": 0.014159230572273555,
+    "sigma_model": 0.017560707532926934,
+    "alternative_constant_ratio": 2.291982812158472
+   }
+  ],
+  "P4_rice_nu_sqrt_r": [
+   {
+    "r": 32.0,
+    "nu_sqrt_r_pred": 0.3221324930536632,
+    "sigma_stat": 9.788880747731396e-06,
+    "sigma_model": 0.0012303624279502157,
+    "alternative_free_fit": 0.3233628554816134
+   },
+   {
+    "r": 64.0,
+    "nu_sqrt_r_pred": 0.3227514627478179,
+    "sigma_stat": 4.894440373865662e-06,
+    "sigma_model": 0.0021814872808527674,
+    "alternative_free_fit": 0.3249329500286707
+   }
+  ],
+  "rice_constant": 0.3233704324419726,
+  "fit_details": {
+   "V_inf_and_b": [
+    0.18866038716208838,
+    0.19670164305545715
+   ],
+   "rice_a_over_r": -0.039614060425901605,
+   "free_nu_fit": [
+    0.3287234935783843,
+    -0.030324348397709353
+   ],
+   "constant_ratio": 0.286497851519809
+  }
+ },
+ "references_for_I1": [
+  {
+   "r": 0.02,
+   "Gamma": 0.426567,
+   "SE": 0.000299,
+   "nu": 0.642094,
+   "nu_SE": 3.12e-05,
+   "source": "Stage 5F primary"
+  },
+  {
+   "r": 0.25,
+   "Gamma": 0.384344,
+   "SE": 0.000417,
+   "nu": 0.468202,
+   "nu_SE": 9.02e-05,
+   "source": "exploratory scan 2026-11-23"
+  },
+  {
+   "r": 0.5,
+   "Gamma": 0.371167,
+   "SE": 0.000587,
+   "nu": 0.378962,
+   "nu_SE": 6.59e-05,
+   "source": "exploratory scan 2026-11-23"
+  },
+  {
+   "r": 1.0,
+   "Gamma": 0.387002,
+   "SE": 0.001545,
+   "nu": 0.290896,
+   "nu_SE": 7.64e-05,
+   "source": "exploratory scan 2026-11-23"
+  },
+  {
+   "r": 2.0,
+   "Gamma": 0.450094,
+   "SE": 0.001899,
+   "nu": 0.215778,
+   "nu_SE": 4.18e-05,
+   "source": "exploratory scan 2026-11-23"
+  }
+ ],
+ "tests": {
+  "z_threshold": 3.5,
+  "z_threshold_rationale": "19 z-tests (I1: 10, P1: 5, P3: 2, P4: 2); SEs from G = 32 groups (31 dof). Two-sided t_31 tail at 3.5 is 0.0014 per test, family-wise false-FAIL ~2.7% if every prediction is correct (|z| <= 3 with G = 16 would have been ~16%).",
+  "sigma_obs": "per point, sigma_obs = sqrt(SE_Gamma^2 + Delta^2), Delta = mean over groups of (Gamma_M - Gamma_2M); the truncation systematic always enters every Gamma test",
+  "V1_truncation": "per primary point, from the per-group differences Delta_g: the truncation is MATERIAL iff |mean Delta| > 3 SE(Delta) AND |mean Delta| > SE_Gamma. A material point is INVALID: excluded from P1-P3 and makes the outcome at best INCONCLUSIVE. V1 never produces FAIL by itself.",
+  "I1_independence": "plain-loop vs references: |z| <= z_threshold for Gamma and nu at each r, and chi2 p >= 0.01 for each quantity",
+  "P1_intermediate": "|z| <= z_threshold at each valid r, z = (obs - pred)/sqrt(sigma_obs^2 + sigma_stat^2 + sigma_model^2)",
+  "P2_lower_bounds": "LOWER-CONFIDENCE-BOUND test (the claim, not compatibility), at every valid intermediate point: (a) positivity  Gamma - 5 sigma_obs > 0;  (b) floor  Gamma - 3 sigma_obs >= 0.36",
+  "P3_large_r": "|z| <= z_threshold at r = 32, 64 (same z definition)",
+  "P4_rice": "|z| <= z_threshold for nu*sqrt(r) at r = 32, 64 (independent of V1: nu has no lag truncation)",
+  "outcome": "INVALID if any provenance check fails (hash, plan, duplicates, extra runs, missing runs, group-level recomputation). Else FAIL if any of I1, P1, P2, P3, P4 fails on valid points. Else INCONCLUSIVE if any point is V1-material (listing which tests could not be scored). Else PASS.",
+  "scope": "A PASS prospectively confirms the positive persistence curve at the listed r only. It is evidence for, not a proof of, Gamma(r) > 0 for all r."
+ },
+ "interpretation_frozen": {
+  "I1_fail": "the two implementations disagree: code/definition error somewhere; no Gamma claim stands until resolved",
+  "P2_fail": "positivity or floor claim not confirmed at a tested r; Stage 4 premise must be re-examined",
+  "P1_fail_only": "interpolation model wrong near the minimum; positivity claim unaffected if P2 passes",
+  "P3_fail_only": "large-r functional form wrong; positivity unaffected",
+  "P4_fail_only": "Rice leading constant or its correction wrong; crossing-rate asymptotics to be revisited",
+  "exploratory_event_index": "NOT scored; reported only (sign of rho_e(l) at all lags; Gamma_event vs Gamma)"
+ }
+}
